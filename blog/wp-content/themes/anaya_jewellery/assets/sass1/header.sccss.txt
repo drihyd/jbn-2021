@@ -1,0 +1,87 @@
+#main-header {
+    background: $color-bright;
+    position: relative;
+    padding: 20px 0;
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    width: 100%;
+    z-index: 1001;
+    .header-logo {
+        display: block;
+        width: 160px;
+        margin: 0 auto;
+        img{
+            width: 100%;
+        }
+    }
+    .link-box {
+        text-transform: uppercase;
+        color: $color-brand;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 50%;
+        padding: 0;
+        padding-right: 75px;
+        bottom: 0;
+        height: 28px;
+        margin: auto 0;
+        text-align: left;
+        &.right {
+            left: initial;
+            right: 0;
+            width: 50%;
+            padding: 0;
+            padding-left: 75px;
+            text-align: right;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            &.type-vertical{
+                margin: 0 -5px;
+                &>li{
+                    padding :0px 5px !important;
+                    position: relative;
+                    &::before{
+                        content: '';
+                        background: $color-brand;
+                        width: 1px;
+                        position: absolute;
+                        right: -3px;
+                        top: 0;
+                        bottom: 0;
+                        height: 70%;
+                        margin: auto 0;
+                    }
+                    &:last-child{
+                        &::before{
+                            width: 0;
+                        }
+                    }
+                }
+            }
+            &>li {
+                color: $color-brand;
+                padding: 0;
+                padding-right: 25px;
+                font-size: 14px;
+                font-weight: 400;
+                &:last-child{
+                    padding-left: 0;
+                }
+                &>a {
+                    color: inherit;
+                    background: 0 0!important;
+                    text-decoration: none!important;
+                }
+            }
+        }
+        @media (min-width: 768px){
+            .dropdown:hover:hover > .dropdown-menu {
+                display: block;
+            }
+}
+    }
+}

@@ -1,0 +1,51 @@
+// $heading-font-family: 'Acumin Pro';
+// $heading-alt-font-family: 'Acumin Pro';
+// $body-font-family: 'Acumin Pro';
+
+$heading-font-family: 'Roboto', sans-serif;
+$heading-alt-font-family:'Roboto', sans-serif;
+$body-font-family: 'Roboto', sans-serif;
+
+$font-size-desktop: .9rem;
+$font-size-mobile: .9rem;
+$line-height: 2;
+
+$color-brand: #8C3141;
+$color-brand-light: #D9B0A3;
+$color-brand-light-lighter: #FDEDE6;
+$color-accent: #B69053;
+$color-accent-2: #27525E;
+$color-accent-3: #484539;
+// $color-accent-4: #9E3B5F;
+$color-accent-4: #8863FB;
+$color-arts: #ED3237;
+$color-coaching: #222222;
+
+$color-bright: #ffffff;
+$color-dark: #292D2F;
+$color-off-white: #F8F8F8;
+$color-light: #F9F9FA;
+$color-gray: #939595;
+$color-gray-light: rgb(233, 233, 233);
+
+$color-highlight: $color-accent;
+$color-cta: $color-accent;
+$color-danger: #8b0000;
+$color-cream: #FFEDA4;
+$color-green: #5CBF6A;
+
+$color-body-bg: $color-bright;
+$color-body-text: $color-accent;
+$color-heading: $color-brand;
+$color-alt-heading: $color-brand;
+$color-link: $color-accent;
+$color-navigation: $color-brand;
+
+$border-radius: 3px;
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}
+}

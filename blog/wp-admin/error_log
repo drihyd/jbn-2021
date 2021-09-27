@@ -1,0 +1,61 @@
+[20-Aug-2020 11:26:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_theme_support() in /home/deepred/public_html/demos/anaya/blog/wp-includes/functions.php:10
+Stack trace:
+#0 /home/deepred/public_html/demos/anaya/blog/wp-settings.php(111): require()
+#1 /home/deepred/public_html/demos/anaya/blog/wp-config.php(90): require_once('/home/deepred/p...')
+#2 /home/deepred/public_html/demos/anaya/blog/wp-load.php(37): require_once('/home/deepred/p...')
+#3 /home/deepred/public_html/demos/anaya/blog/wp-admin/admin-ajax.php(22): require_once('/home/deepred/p...')
+#4 {main}
+  thrown in /home/deepred/public_html/demos/anaya/blog/wp-includes/functions.php on line 10
+[24-Aug-2020 09:12:45 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_theme_support() in /home/deepred/public_html/demos/anaya/blog/wp-includes/functions.php:11
+Stack trace:
+#0 /home/deepred/public_html/demos/anaya/blog/wp-settings.php(111): require()
+#1 /home/deepred/public_html/demos/anaya/blog/wp-config.php(90): require_once('/home/deepred/p...')
+#2 /home/deepred/public_html/demos/anaya/blog/wp-load.php(37): require_once('/home/deepred/p...')
+#3 /home/deepred/public_html/demos/anaya/blog/wp-admin/admin-ajax.php(22): require_once('/home/deepred/p...')
+#4 {main}
+  thrown in /home/deepred/public_html/demos/anaya/blog/wp-includes/functions.php on line 11
+[24-Aug-2020 09:13:57 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_theme_support() in /home/deepred/public_html/demos/anaya/blog/wp-includes/functions.php:11
+Stack trace:
+#0 /home/deepred/public_html/demos/anaya/blog/wp-settings.php(111): require()
+#1 /home/deepred/public_html/demos/anaya/blog/wp-config.php(90): require_once('/home/deepred/p...')
+#2 /home/deepred/public_html/demos/anaya/blog/wp-load.php(37): require_once('/home/deepred/p...')
+#3 /home/deepred/public_html/demos/anaya/blog/wp-admin/admin.php(34): require_once('/home/deepred/p...')
+#4 /home/deepred/public_html/demos/anaya/blog/wp-admin/edit.php(10): require_once('/home/deepred/p...')
+#5 {main}
+  thrown in /home/deepred/public_html/demos/anaya/blog/wp-includes/functions.php on line 11
+[24-Aug-2020 09:13:59 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function add_theme_support() in /home/deepred/public_html/demos/anaya/blog/wp-includes/functions.php:11
+Stack trace:
+#0 /home/deepred/public_html/demos/anaya/blog/wp-settings.php(111): require()
+#1 /home/deepred/public_html/demos/anaya/blog/wp-config.php(90): require_once('/home/deepred/p...')
+#2 /home/deepred/public_html/demos/anaya/blog/wp-load.php(37): require_once('/home/deepred/p...')
+#3 /home/deepred/public_html/demos/anaya/blog/wp-admin/admin.php(34): require_once('/home/deepred/p...')
+#4 /home/deepred/public_html/demos/anaya/blog/wp-admin/edit.php(10): require_once('/home/deepred/p...')
+#5 {main}
+  thrown in /home/deepred/public_html/demos/anaya/blog/wp-includes/functions.php on line 11
+[25-Aug-2020 08:47:10 UTC] PHP Warning:  call_user_func() expects parameter 1 to be a valid callback, function 'my_dashboard_widget_display' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-admin/includes/template.php on line 1389
+[25-Aug-2020 08:47:21 UTC] PHP Warning:  call_user_func() expects parameter 1 to be a valid callback, function 'my_dashboard_widget_display' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-admin/includes/template.php on line 1389
+[25-Aug-2020 08:54:50 UTC] PHP Warning:  Use of undefined constant func - assumed 'func' (this will throw an Error in a future version of PHP) in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/functions.php on line 9
+[25-Aug-2020 08:54:50 UTC] PHP Warning:  call_user_func() expects parameter 1 to be a valid callback, function 'custom_dashboard_help' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-admin/includes/template.php on line 1389
+[25-Aug-2020 08:54:53 UTC] PHP Warning:  Use of undefined constant func - assumed 'func' (this will throw an Error in a future version of PHP) in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/functions.php on line 9
+[25-Aug-2020 08:54:53 UTC] PHP Warning:  Use of undefined constant func - assumed 'func' (this will throw an Error in a future version of PHP) in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/functions.php on line 9
+[25-Aug-2020 08:54:55 UTC] PHP Warning:  Use of undefined constant func - assumed 'func' (this will throw an Error in a future version of PHP) in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/functions.php on line 9
+[25-Aug-2020 08:54:55 UTC] PHP Warning:  call_user_func() expects parameter 1 to be a valid callback, function 'custom_dashboard_help' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-admin/includes/template.php on line 1389
+[25-Aug-2020 08:54:59 UTC] PHP Warning:  Use of undefined constant func - assumed 'func' (this will throw an Error in a future version of PHP) in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/functions.php on line 9
+[25-Aug-2020 08:54:59 UTC] PHP Warning:  call_user_func() expects parameter 1 to be a valid callback, function 'custom_dashboard_help' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-admin/includes/template.php on line 1389
+[25-Aug-2020 08:55:01 UTC] PHP Warning:  Use of undefined constant func - assumed 'func' (this will throw an Error in a future version of PHP) in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/functions.php on line 9
+[25-Aug-2020 08:55:01 UTC] PHP Warning:  Use of undefined constant func - assumed 'func' (this will throw an Error in a future version of PHP) in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/functions.php on line 9
+[25-Aug-2020 08:55:18 UTC] PHP Warning:  call_user_func() expects parameter 1 to be a valid callback, function 'custom_dashboard_help' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-admin/includes/template.php on line 1389
+[25-Aug-2020 08:55:19 UTC] PHP Warning:  call_user_func() expects parameter 1 to be a valid callback, function 'custom_dashboard_help' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-admin/includes/template.php on line 1389
+[25-Aug-2020 08:55:20 UTC] PHP Warning:  call_user_func() expects parameter 1 to be a valid callback, function 'custom_dashboard_help' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-admin/includes/template.php on line 1389
+[25-Aug-2020 08:56:32 UTC] PHP Warning:  call_user_func() expects parameter 1 to be a valid callback, function 'custom_dashboard_help' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-admin/includes/template.php on line 1389
+[25-Aug-2020 08:56:37 UTC] PHP Warning:  call_user_func() expects parameter 1 to be a valid callback, function 'custom_dashboard_help' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-admin/includes/template.php on line 1389
+[25-Aug-2020 08:59:42 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'my_custom_dashboard_widgets' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-includes/class-wp-hook.php on line 287
+[25-Aug-2020 08:59:44 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'my_custom_dashboard_widgets' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-includes/class-wp-hook.php on line 287
+[26-Aug-2020 06:32:54 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'my_custom_dashboard_widgets' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-includes/class-wp-hook.php on line 287
+[26-Aug-2020 12:12:44 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'my_custom_dashboard_widgets' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-includes/class-wp-hook.php on line 287
+[27-Aug-2020 03:10:27 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'my_custom_dashboard_widgets' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-includes/class-wp-hook.php on line 287
+[27-Aug-2020 08:05:22 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'my_custom_dashboard_widgets' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-includes/class-wp-hook.php on line 287
+[27-Aug-2020 09:07:45 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'my_custom_dashboard_widgets' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-includes/class-wp-hook.php on line 287
+[27-Aug-2020 09:12:03 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'my_custom_dashboard_widgets' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-includes/class-wp-hook.php on line 287
+[27-Aug-2020 10:42:27 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'my_custom_dashboard_widgets' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-includes/class-wp-hook.php on line 287
+[20-Sep-2020 16:54:16 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'my_custom_dashboard_widgets' not found or invalid function name in /home/deepred/public_html/demos/anaya/blog/wp-includes/class-wp-hook.php on line 287

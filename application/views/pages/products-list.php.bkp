@@ -1,0 +1,437 @@
+<!-- PAGE BODY : BEGIN -->
+<main class="main-content">
+  <section class="hero p-0">
+    <!-- <div class="hero-banner">
+    </div> -->
+    <img src="<?php echo base_url();?>assets/img/banner.jpg" width="100%" alt="">
+    </section>
+
+ 
+
+    <div class="product-filters" id="productFilters" data-toggle="affix">
+      <div class="d-block d-lg-none d-xl-none">
+        <div class="filter-group">
+          <span class="filter-btn filter-sort-toggle">Sort by</span>
+          <span class="filter-btn filter-menu-toggle">Filter by</span>
+        </div>
+      </div>
+      <div class="pf-container">
+        <div class="pf-header d-lg-none">
+          <div class="wrapper">
+            <span class="filter-menu-toggle"><i class="fas fa-arrow-left"></i></span>
+            <div class="title">Filters</div>
+            <div><a href="">Clear all</a></div>
+          </div>
+        </div><!-- Filters header -->
+          <ul class="product-filters-list">
+            <li class="filter-list">
+                <span class="anchor filter-sub-menu-toggle">Price</span>
+                <div class="pf-sub-list">
+                  <div class="pf-sub-header d-lg-none">
+                    <div class="wrapper">
+                      <span class="filter-sub-menu-toggle"><i class="fas fa-arrow-left"></i></span>
+                      <div class="title">Price</div>
+                      <div><a href="">Clear all</a></div>
+                    </div>
+                  </div>
+                  <ul class="sub-filter">
+                    <li >
+                      
+                      <!-- <select>
+                        <option name="" value="0-5000" >Below Rs.5000</option>
+                        <option name="" value="5000-15000" >Rs.5000-15000</option>
+                        <option name="" value="15000-30000" >Rs.15000-30000</option>
+                        <option name="" value="30000-100000" >Rs.30000-100000</option>
+                        <option name="" value="100000-300000" >Rs.100000-300000</option>
+                        <option name="" value="100000-300000" >Rs.100000-300000</option>
+                        <option name="" value="300000-above" >Above Rs.300000</option>
+ <span class="anchor filter-option">
+                         -->
+                      <span class="anchor">
+                                            
+                        <input  type="checkbox" class="common_selector" name="price_show" id="price_show_d" value="1-5000" autocomplete="off">Below Rs.5000
+                         </span>
+                    </li>
+                    <li >
+                      <span class="anchor">
+                        <input type="checkbox" class="common_selector" name="price_show" id="price_show" value="5000-15000" autocomplete="off">
+                        Rs. 5000 - 15000</span>
+                    </li>
+                    <li >
+                      <span class="anchor">
+                        <input type="checkbox" class="common_selector" name="price_show" id="price_show" value="5000-30000" autocomplete="off">
+                        Rs. 15000 - 30000</span>
+                    </li>
+                    <li >
+                      <span class="anchor ">
+                        <input type="checkbox" class="common_selector" name="price_show" id="price_show"  value="30000-100000" autocomplete="off">
+                        Rs. 30000 - 100000</span>
+                    </li>
+                    <li >
+                      <span class="anchor">
+                        <input type="checkbox" class="common_selector" name="price_show" id="price_show" value="100000-300000" autocomplete="off">
+                        Rs. 100000 - 300000</span>
+                    </li>
+                    <li >
+                      <span class="anchor">
+                        <input type="checkbox" class="common_selector" name="price_show" id="price_show" value="300000-1000000" autocomplete="off">
+                        Rs. 300000 and above</span>
+                    </li>
+                    <!-- </select> -->
+                  </ul>
+                </div>
+            </li>
+            <!-- <li class="filter-list ">
+              <span class="anchor filter-sub-menu-toggle">Product type</span>
+              <div class="pf-sub-list">
+                <div class="pf-sub-header d-lg-none">
+                  <div class="wrapper">
+                    <span class="filter-sub-menu-toggle"><i class="fas fa-arrow-left"></i></span>
+                    <div class="title">Product type</div>
+                    <div><a href="">Clear all</a></div>
+                  </div>
+                </div>
+                  <ul class="sub-filter">
+                    <li >
+                      <span class="anchor filter-option">
+                        <input type="checkbox" name="" value="" autocomplete="off">
+                        Earrings</span>
+                    </li>
+                  </ul>
+              </div>
+            </li> -->
+            <li class="filter-list">
+              <span class="anchor filter-sub-menu-toggle">Product Type</span>
+              <div class="pf-sub-list">
+                <div class="pf-sub-header d-lg-none">
+                  <div class="wrapper">
+                    <span class="filter-sub-menu-toggle"><i class="fas fa-arrow-left"></i></span>
+                    <div class="title">Product Type</div>
+                    <div><a href="">Clear all</a></div>
+                  </div>
+                </div>
+                <?php if($categories) {
+                          foreach ($categories as $category) { ?>
+                            <?php if($category->ParentID == 0) { ?>
+                <ul class="sub-filter">
+                  <li >
+                    <ul class="sf-sub-filter" id="moreFilter">
+                      
+                      <li class="sf-sub-list">
+                        <span class="anchor anchor-icon" data-toggle="collapse" data-target="#<?php echo $category->CategoryName ?>" aria-expanded="false" aria-controls="<?php echo $category->CategoryName ?>">
+                          <?php echo $category->CategoryName;?>
+                        </span>
+                        
+                        <div class="collapse" id="<?php echo $category->CategoryName ?>" aria-expanded="false" >
+                          <ul>
+                            <li>
+                              <span class="anchor filter-option">
+                                <input type="checkbox" name="" value="" autocomplete="off">
+                                All</span>
+                            </li>
+                            <?php foreach($categories as $parentfilter) { ?>
+                            <?php if($parentfilter->ParentID == $category->CategoryID) { ?>
+                            <li>
+                              <span class="anchor filter-option">
+                                <input type="checkbox" name="" value="" autocomplete="off">
+                                <?php echo $parentfilter->CategoryName;?></span>
+                            </li>
+                            <?php }} ?>
+                          </ul>
+                        </div>
+                        
+                      </li>
+                    
+                    </ul>
+                  </li>
+                </ul>
+                <?php }}} ?>
+              </div>
+            </li>
+            <li class="filter-list">
+              <span class="anchor filter-sub-menu-toggle">Weight ranges</span>
+              <div class="pf-sub-list">
+                <div class="pf-sub-header d-lg-none">
+                  <div class="wrapper">
+                    <span class="filter-sub-menu-toggle"><i class="fas fa-arrow-left"></i></span>
+                    <div class="title">Weight ranges</div>
+                    <div><a href="">Clear all</a></div>
+                  </div>
+                </div>
+                <ul class="sub-filter">
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      0-2 gms</span>
+                  </li>
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      2-5 gms</span>
+                  </li>
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      5-10 gms</span>
+                  </li>
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      10-20 gms</span>
+                  </li>
+                </ul>
+            </div>
+            </li>
+            <li class="filter-list">
+              <span class="anchor filter-sub-menu-toggle">Material</span>
+              <div class="pf-sub-list">
+                <div class="pf-sub-header d-lg-none">
+                  <div class="wrapper">
+                    <span class="filter-sub-menu-toggle"><i class="fas fa-arrow-left"></i></span>
+                    <div class="title">Material</div>
+                    <div><a href="">Clear all</a></div>
+                  </div>
+                </div>
+                <ul class="sub-filter">
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      <span class="with-icon"><span class="icon gold"></span></span>Gold</span>
+                  </li>
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      <span class="with-icon"><span class="icon diamond"></span></span>Diamond</span>
+                  </li>
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      <span class="with-icon"><span class="icon gemstone"></span></span>Gemstone</span>
+                  </li>
+                </ul>
+            </div>
+            </li>
+            <li class="filter-list">
+              <span class="anchor filter-sub-menu-toggle">Metal Color</span>
+              <div class="pf-sub-list">
+                <div class="pf-sub-header d-lg-none">
+                  <div class="wrapper">
+                    <span class="filter-sub-menu-toggle"><i class="fas fa-arrow-left"></i></span>
+                    <div class="title">Metal</div>
+                    <div><a href="">Clear all</a></div>
+                  </div>
+                </div>
+                <ul class="sub-filter">
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      <span class="with-icon"><span class="icon gold"></span></span>Yellow</span>
+                  </li>
+
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      <span class="with-icon"><span class="icon gemstone"></span></span>White</span>
+                  </li>
+
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      <span class="with-icon"><span class="icon gemstone"></span></span>Rose</span>
+                  </li>
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      <span class="with-icon"><span class="icon gemstone"></span></span>Tone</span>
+                  </li>
+                </ul>
+            </div>
+            </li>
+            <li class="filter-list">
+              <span class="anchor filter-sub-menu-toggle">Metal Purity</span>
+              <div class="pf-sub-list">
+                <div class="pf-sub-header d-lg-none">
+                  <div class="wrapper">
+                    <span class="filter-sub-menu-toggle"><i class="fas fa-arrow-left"></i></span>
+                    <div class="title">Metal</div>
+                    <div><a href="">Clear all</a></div>
+                  </div>
+                </div>
+                <ul class="sub-filter">
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      <span class="with-icon"><span class="icon gold"></span></span>14 Kt</span>
+                  </li>
+
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      <span class="with-icon"><span class="icon diamond"></span></span>18 Kt</span>
+                  </li>
+                  <li >
+                    <span class="anchor filter-option">
+                      <input type="checkbox" name="" value="" autocomplete="off">
+                      <span class="with-icon"><span class="icon gemstone"></span></span>22 Kt</span>
+                  </li>
+                </ul>
+            </div>
+            </li>
+            <li class="filter-list">
+              <span class="anchor filter-sub-menu-toggle">See more filters</span>
+              <div class="pf-sub-list">
+                <div class="pf-sub-header d-lg-none">
+                  <div class="wrapper">
+                    <span class="filter-sub-menu-toggle"><i class="fas fa-arrow-left"></i></span>
+                    <div class="title">See more filters</div>
+                    <div><a href="">Clear all</a></div>
+                  </div>
+                </div>
+                <ul class="sub-filter">
+                  <li >
+                    <ul class="sf-sub-filter" id="moreFilter">
+
+                      <li class="sf-sub-list">
+                        <span class="anchor anchor-icon" data-toggle="collapse" data-target="#gemstone" aria-expanded="false" aria-controls="gemstone">
+                          Gemstone
+                        </span>
+                        <div class="collapse" id="gemstone" aria-expanded="false" >
+                          <ul>
+                            <li>
+                              <span class="anchor filter-option">
+                                <input type="checkbox" name="" value="" autocomplete="off">
+                                Peral</span>
+                            </li>
+                            <li >
+                              <span class="anchor filter-option">
+                                <input type="checkbox" name="" value="" autocomplete="off">
+                                <span class="with-icon"><span class="icon gemstone"></span></span>Sapphire</span>
+                            </li>
+                            <li>
+                              <span class="anchor filter-option">
+                                <input type="checkbox" name="" value="" autocomplete="off">
+                                Emerald</span>
+                            </li>
+                            <li>
+                              <span class="anchor filter-option">
+                                <input type="checkbox" name="" value="" autocomplete="off">
+                                Amethyst</span>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+      </div>
+      <div class="pf-sort-container">
+        <div class="filter-content pt-2 pt-md-3 pt-lg-3 pt-xl-3  pb-2 pb-md-3 pb-lg-3 pb-xl-3">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div class="filter-tags d-none d-lg-block">
+                  <ul class="list-inline tags-list m-0">
+                    <li class="list-inline-item"><a href="" class="tag">01</a></li>
+                    <li class="list-inline-item"><a href="" class="tag">01</a></li>
+                    <li class="list-inline-item"><a href="" class="tag">01</a></li>
+                    <li class="list-inline-item"><a href="" class="tag">01</a></li>
+                    <li class="list-inline-item"><a href="" class="tag">01</a></li>
+                  </ul>
+                  <a href="" class="ml-3">Clear all</a>
+                </div>
+                <div class="filter-category">
+                  <ul class="list-inline mt-0 mt-md-3 mb-0 scrollEnable">
+                    <li class="list-inline-item">
+                      <a href="" class="btn btn-brand m-0">All <span class="count">(<?php echo isset($No_of_Products)?$No_of_Products:0;?>)</span></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="" class="btn btn-default default-gray m-0">Try at Home</a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="" class="btn btn-default default-gray m-0">Designs in Store</a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="" class="btn btn-default default-gray m-0">Fast Delivery</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-4 ml-auto align-self-end d-none d-lg-block">
+                <div class="custom-select-wrapper">
+                  <div class="custom-select">
+                    <div class="custom-select-trigger">
+                      <div class="selected-text">Sort by: <span>Tesla</span></div>
+                        <div class="arrow"><i class="arrow-icon"></i></div>
+                    </div>
+                    <div class="custom-options custom-scrollbar">
+                        <span class="custom-option selected">
+                          <input type="checkbox" name="" value="" autocomplete="off">
+                         </span>
+                        <span class="custom-option">
+                          <input type="checkbox" name="" value="" autocomplete="off">
+                          Volvo</span>
+                        <span class="custom-option">
+                          <input type="checkbox" name="" value="" autocomplete="off">
+                          Mercedes</span>
+                        <span class="custom-option">
+                          <input type="checkbox" name="" value="" autocomplete="off">
+                          Tesla
+                        </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+      <div class="overlay filter-sort-toggle"></div>
+      <div class="custom-sort d-block d-lg-none d-xl-none">
+        <div class="custom-sort-container">
+          <div class="sort-heading">Sort by: <span class="filter-sort-toggle pull-right"><i class="fas fa-arrow-right"></i></span></div>
+          <span class="custom-option selected" data-value="tesla">Tesla</span>
+          <span class="custom-option" data-value="volvo">Volvo</span>
+          <span class="custom-option" data-value="mercedes">Mercedes</span>
+          <span class="custom-option" data-value="tesla">Tesla</span>
+          <span class="custom-option" data-value="volvo">Volvo</span>
+          <span class="custom-option" data-value="mercedes">Mercedes</span>
+          <span class="custom-option" data-value="tesla">Tesla</span>
+        </div>
+    </div>
+    </div>
+   
+   <!-- List of producst -->
+    <section class="info products-sec">
+      <div class="container">
+          <div class="product-container filter_data">
+           <?php echo $products_card_lists;?>           
+          </div>
+      </div>
+    </section>
+
+   <!-- End -->
+
+    <div class="bg-brand pt-3 pb-2 text-center">
+      <div class="container">
+        <p class="text-bright m-0">Know More about Anaya</p>
+      </div>
+    </div>
+
+    <section class="info bg-bright">
+      <div class="container">
+        <h4 class="text-uppercase">Lorem ipsum, dolor sit amet</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum animi impedit eaque aspernatur iusto reiciendis, neque iste dolor ipsa nulla cumque maiores, voluptatibus voluptas magni. Quas culpa itaque mollitia id.</p>
+        <h4 class="text-uppercase">Lorem ipsum, dolor sit amet</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum animi impedit eaque aspernatur iusto reiciendis, neque iste dolor ipsa nulla cumque maiores, voluptatibus voluptas magni. Quas culpa itaque mollitia id. Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum animi impedit eaque aspernatur iusto reiciendis, neque iste dolor ipsa nulla cumque maiores, voluptatibus voluptas magni. Quas culpa itaque mollitia id. Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum animi impedit eaque aspernatur iusto reiciendis, neque iste dolor ipsa nulla cumque maiores, voluptatibus voluptas magni. Quas culpa itaque mollitia id.
+        </p>
+        <h4 class="text-uppercase">Lorem ipsum, dolor sit amet</h4>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum animi impedit eaque aspernatur iusto reiciendis, neque iste dolor ipsa nulla cumque maiores, voluptatibus voluptas magni. Quas culpa itaque mollitia id.</p>
+      </div>
+    </section>
+</main>

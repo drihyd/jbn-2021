@@ -1,0 +1,103 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Products extends MY_Controller {
+
+    public $category_slug="";
+
+    function __construct(){
+        parent::__construct();
+        $this->load->model('Products_model','product',TRUE);
+       $this->category_slug=$this->uri->segment('3');
+       
+
+    }
+    public function index()
+    {       
+        $this->category();  
+    }
+    public function category($cat_slug=NULL)
+    {   
+        if(isset($cat_slug)){
+        $data['products'] = $this->product->get_products($this->category_slug);
+            if(count((array)($data['products']))>0){
+                $data['page'] = 'products-list';
+                $data['page_title'] = "Products - ".ucwords($cat_slug)." | ".SITENAME;
+                $data['No_of_Products'] =count((array)($data['products']));
+                $data['include_files'][] = './be-assets/includes/category.php';
+                $data['products_card_lists']=$this->product_card_snippet($data['products']);
+                $data['categories']=$this->core->select('product_category',"", "", "");
+                $this->load->view('anaya-template', $data);
+            }
+            else{
+                redirect('./');
+            }
+        }
+        else{
+            redirect('./');
+        }
+    }
+    public function ajax_filtered_prducts()
+    {
+        $post_vars = $this->input->post();
+        $data['products'] = $this->product->ajax_filtered_prducts($post_vars);
+        $this->load->view('ajax-products-list', $data);
+        exit();
+    }
+    public function product_card_snippet($display_products=false){
+        if(isset($display_products)){
+            $results="";
+            foreach ($display_products as $key => $product) { 
+            $results.=$this->_product_card_snippet($product);
+            } 
+            return $results;
+        }       
+    }
+
+public function _product_card_snippet($single_prouct=false){
+    ob_start();
+    ?>
+    <div class="product">
+    <div class="product-card shadow">
+    <span class="product-wish"><i class="fas fa-heart"></i></span>
+    <a href="<?php echo base_url();?>product/<?php echo $single_prouct->slug;?>" class="product-img-wrapper">
+    <?php if(file_exists("uploads/products/".$single_prouct->SKU."_thumbnail.jpg")){ ?>        
+    <img class="product-img lazy" src="<?php echo base_url("uploads/products/".$single_prouct->SKU."_thumbnail.jpg");?>" data-original="<?php echo base_url("uploads/products/".$single_prouct->SKU."_thumbnail.jpg");?>" alt="<?php echo isset($single_prouct->Name)?$single_prouct->Name:"Lorem Ipsum";?>">
+    <?php } else { ?>
+    <img class="product-img lazy" src="<?php echo base_url("uploads/imp/Not_Available.jpg");?>" data-original="<?php echo base_url("uploads/imp/Not_Available.jpg");?>" alt="">
+    <?php } ?>
+    </a>
+    <div class="product-info">
+    <div class="product-price">
+    <span class="reg-price"><?php echo IND_CURRENCY;?> <?php echo isset($single_prouct->p_price)?$single_prouct->p_price:"0.00";?></span>
+    <span class="strike-price"><del><?php echo IND_CURRENCY;?> <?php echo isset($single_prouct->p_MRP_Price)?$single_prouct->p_MRP_Price:"0.00";?></del></span>
+    </div>
+    <a href="<?php echo base_url();?>product/<?php echo $single_prouct->slug;?>" class="product-name"><?php echo isset($single_prouct->Name)?$single_prouct->Name:"Lorem Ipsum";?></a>
+    </div>
+    </div>
+    </div>
+    <?php          
+    $output = ob_get_contents();
+    ob_end_clean();
+    return $output;
+}
+
+public function products_fetch_data(){
+    $data_params = $this->input->post('data_params');
+    $b=$data_params;
+    $b=explode(',', $b);
+    $first = current($b);
+    $first = substr( $first, 0, strrpos( $first, '-' ) );
+    $last = end($b);
+    $last = substr(strrchr(rtrim($last, '-'), '-'), 1);
+    //echo $first."--".$last."--".$this->category_slug;
+    $filters = array(
+        'min_price' =>$first,
+        'max_price' =>$last,
+    );
+    $data['products']=$this->product->get_products($this->uri->segment('3'),$filters);
+    echo $this->product_card_snippet($data['products']);
+    exit();
+    }
+    
+}

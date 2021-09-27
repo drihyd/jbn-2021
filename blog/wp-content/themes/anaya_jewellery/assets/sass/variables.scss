@@ -1,0 +1,46 @@
+$heading-font-family: 'Acumin Pro';
+$heading-alt-font-family: 'Acumin Pro';
+$body-font-family: 'Acumin Pro';
+
+$font-size-desktop: 15px;
+$font-size-mobile: 15px;
+$line-height: 30px;
+
+$color-brand: #8C3141;
+$color-brand-light: #D9B0A3;
+$color-brand-light-lighter: #FDEDE6;
+$color-accent: #B88668;
+$color-accent-2: #27525E;
+$color-accent-3: #484539;
+// $color-accent-4: #9E3B5F;
+$color-accent-4: #8863FB;
+$color-arts: #ED3237;
+$color-coaching: #222222;
+
+$color-bright: #ffffff;
+$color-dark: #292D2F;
+$color-off-white: #F8F8F8;
+$color-light: #F9F9FA;
+$color-gray: #939595;
+$color-gray-light: #EAEAEA;
+
+$color-highlight: $color-accent;
+$color-cta: $color-accent;
+$color-danger: #8b0000;
+$color-cream: #FFEDA4;
+
+$color-body-bg: $color-bright;
+$color-body-text: $color-accent;
+$color-heading: $color-brand;
+$color-alt-heading: $color-brand;
+$color-link: $color-accent;
+$color-navigation: $color-brand;
+
+$border-radius: 3px;
+
+@mixin placeholder {
+    ::-webkit-input-placeholder {@content}
+    :-moz-placeholder           {@content}
+    ::-moz-placeholder          {@content}
+    :-ms-input-placeholder      {@content}
+  }

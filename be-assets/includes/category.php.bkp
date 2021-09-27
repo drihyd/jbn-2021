@@ -1,0 +1,45 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+<script>
+$(document).ready(function(){
+
+
+    $("span.anchor input[name='price_show']").click(function(){
+            var favorite = [];
+            $.each($("input[name='price_show']:checked"), function(){
+                favorite.push($(this).val());
+            });
+            //alert("My favourite sports are: " + favorite.join(", "));
+            filter_data(favorite.join(","));
+        });
+
+}); 
+
+
+
+    function filter_data(data_params)
+    {   
+    	
+
+// Here we might call the "hide" action 2 times, or simply set the "force" parameter to true:
+
+        $('.filter_data').html('<div id="loading" style="" >loading...</div>');
+        var action = 'fetch_data';
+        var data_params = data_params;
+      	var url="<?php echo base_url(); ?>products/products_fetch_data";
+        $.ajax({
+              url: url,
+              type: "POST",
+              data:{action:action,data_params:data_params},
+              success:function(data) {
+				$.LoadingOverlay("show", {
+				image       : "",
+				fontawesome : "fa fa-cog fa-spin fa-1"
+				});
+              $('.filter_data').html(data);  
+               $.LoadingOverlay("hide", true);      
+              }
+          });
+
+       
+    }
+</script>

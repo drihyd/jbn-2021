@@ -1,0 +1,250 @@
+@import "compass/css3";
+@import "variables.scss";
+// @font-face {
+//     font-family: 'brix_sansregular';
+//     src: url('../fonts/brix_sans_regular-webfont.woff2') format('woff2'),
+//          url('../fonts/brix_sans_regular-webfont.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+// @font-face {
+//     font-family: 'arialregular';
+//     src: url('../fonts/arial-webfont.woff2') format('woff2'),
+// 		 url('../fonts/arial-webfont.woff') format('woff');
+//     font-weight: normal;
+//     font-style: normal;
+// }
+    @font-face {
+	font-family: 'Acumin Pro';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Acumin Pro'), url('../fonts/Acumin-RPro.woff') format('woff');
+	}
+
+	@font-face {
+	font-family: 'Acumin Pro Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Acumin Pro Italic'), url('../fonts/Acumin-ItPro.woff') format('woff');
+	}
+
+
+	@font-face {
+	font-family: 'Acumin Pro Bold';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Acumin Pro Bold'), url('../fonts/Acumin-BdPro.woff') format('woff');
+	}
+
+
+	@font-face {
+	font-family: 'Acumin Pro Bold Italic';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Acumin Pro Bold Italic'), url('../fonts/Acumin-BdItPro.woff') format('woff');
+	}
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	overflow-x: hidden;
+	min-height: 100vh;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	letter-spacing: 0.05rem;
+	color: $color-body-text;
+    // color: linear-gradient(122deg, #85559E 0%, #3E529C 47%, #B74E8E 100%);
+	// @include color-gradient();
+	// font-weight: 600;
+}
+
+html {
+	font-size: $font-size-desktop;
+	@media(max-width: 767px) {
+		font-size: $font-size-mobile;
+	}
+}
+
+body {
+	background: $color-body-bg;
+	font-family: $body-font-family;
+	font-size: $font-size-desktop;
+	@media(max-width: 767px) {
+		font-size: $font-size-mobile;
+	}
+	line-height: $line-height;
+	position: relative;
+	z-index: 1000;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $heading-font-family;
+	padding: 0px;
+	margin: 0px;
+
+	.highlight {
+		color: $color-accent;
+		-webkit-text-fill-color: $color-accent;
+	}
+
+	.underline {
+		display: inline-block;
+		text-decoration: underline;
+	}
+
+	.heading-icon {
+		display: block;
+		width: 60px;
+		height: 60px;
+		margin: 15px auto;
+	}
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: $color-heading;
+
+	@media(max-width: 420px) {
+		letter-spacing: 0px;
+	}
+	&.shadow{
+		@include text-shadow(0px 2px 5px rgba(0, 0, 0, 0.61));
+	}
+
+	a {
+		text-decoration: none !important;
+		color: inherit;
+		display: inline-block;
+	}
+}
+
+h1 {
+	font-family: $heading-font-family;
+	font-size: 34px;
+	line-height: 1.2;
+	font-weight: 300;
+	@media(max-width: 767px) {
+		font-size: 30px;
+		padding-top: 10px;
+		margin-bottom: 8px;
+	}
+}
+
+h2 {
+	font-size: 1.5rem;
+	line-height: 1.3;
+	font-weight: 400;
+
+	//background: -webkit-linear-gradient(140deg, #00fff3 0%, #ffd2a0 100%);
+	//background-clip: text;
+	//-webkit-background-clip: text;
+	//-webkit-text-fill-color: transparent;
+	@media(max-width: 767px) {
+		font-size: 28px;
+		padding-top: 10px;
+		margin-bottom: 12px;
+	}
+
+	@media(max-width: 480px) {
+		font-size: 26px;
+	}
+}
+
+h3 {
+	font-size: 1.3rem;
+	line-height: 1.3;
+	padding-top: 6px;
+	margin-bottom: 10px
+}
+
+h4 {
+	font-size: 18px;
+	line-height: 1.4;
+	padding-top: 15px;
+	margin-bottom: 10px
+}
+
+h5 {
+	font-size: 16px;
+	line-height: 1.4;
+	padding-top: 8px;
+	margin-bottom: 10px
+}
+
+h6 {
+	font-size: 14px;
+	line-height: 1.4;
+	padding-top: 9px;
+	margin-bottom: 21px
+}
+
+p {
+	padding-top: 0px;
+	margin-bottom: 15px;
+	font-size: 0.9rem;
+	line-height: 1.6;
+	font-weight: 400;
+
+	&.shadow{
+		@include text-shadow(0px 2px 5px rgba(0, 0, 0, 0.61));
+	}
+
+	&.intro-text {
+		font-size: 20px;
+		line-height: 1.6;
+		margin-bottom: 20px;
+
+		&.spaced {
+			line-height: 30px;
+		}
+	}
+
+	strong {
+		font-weight: bold;
+	}
+}
+
+a {
+	color: $color-brand;
+	text-decoration: none;
+
+	&:hover {
+		color: darken($color-brand, 6%);
+	}
+}
+
+ul, ol {
+	padding-left: 20px;
+	margin-bottom: 15px;
+
+	& > li {
+		font-size: 16px;
+		line-height: 24px;
+		font-weight: 600;
+	}
+}
+
+iframe[name='google_conversion_frame'] {
+	height: 0 !important;
+	width: 0 !important;
+	line-height: 0 !important;
+	font-size: 0 !important;
+	margin-top: -13px;
+	float: left;
+}
+
+.youtube-iframe {
+	//display: none;
+	margin: 25px 0;
+}
+
+p.small {
+	font-size: 85%;
+	line-height: 1.5;
+}
+
+svg{
+	max-height: 0;
+	display: none;
+}

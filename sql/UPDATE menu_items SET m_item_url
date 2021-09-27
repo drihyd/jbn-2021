@@ -1,0 +1,2 @@
+UPDATE menu_items SET m_item_url = replace(m_item_url, 'Old url', 'new url');
+UPDATE menu_items SET m_item_url = replace(m_item_url, 'http://localhost:8080anaya', 'http://localhost:8080/anaya');

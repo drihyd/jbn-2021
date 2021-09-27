@@ -1,0 +1,34 @@
+$("form").validate({
+      rules:{
+        Banner_image:{       
+          extension: "jpg|jpeg|png|ico|bmp"
+        },
+        Heading_One:{       
+          minlength:3,
+          maxlength:250
+        },      
+        Heading_Two:{
+          minlength:3,
+          maxlength:250
+        },
+        Description:{
+          minlength:3,
+          maxlength:250
+        },
+        Button_Name:{
+             minlength:3,
+          maxlength:250
+        },
+        Call_to_action_URL:{
+          url:true,
+        },
+        Panel_Type:{
+          required:true
+       }
+    },
+      messages:{
+        Banner_image:{
+          extension:'Please uploade images only'
+        }
+      }
+});

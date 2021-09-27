@@ -1,0 +1,606 @@
+
+<!-- page content -->
+<div class="right_col" role="main">
+  <div class="">
+<div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2><?php echo $page_title;?></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link "><i class="fa fa-chevron-up"></i>&nbsp;&nbsp;</a>
+                      </li>
+                      <!-- <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li> -->
+                      <li><a class="btn btn-round btn-success" href="<?php echo site_url(); ?>add">+Add Products</a></i>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <!-- <p class="text-muted font-13 m-b-30">
+                      DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
+                    </p> -->
+                   
+				   
+				   <form role="form" method="post" class="frm" data-parsley-validate action="<?php echo site_url()?>add_save"  enctype="multipart/form-data">
+				   
+				   
+				   
+				   
+				   <div class="row">	
+				   <div class="col-md-6">
+
+
+    <div class="form-group">
+    <label for="CategorylD">Category<span class="text red">*</span>:</label>
+   <select class="form-control get_subcategory_ajax" id="CategorylD" name="CategorylD" required>	
+	<option value="">-- Pick One --</option>
+	<?php  foreach($this->products->categories_lists() as $Category) { ?>	
+	<option value="<?php echo $Category->CategoryID;?>"><?php echo ucwords($Category->CategoryName);?></option>
+	<?php } ?>
+	</select>	
+  </div>
+  
+    <div class="form-group">
+    <label for="CategorylD">Sub Category<span class="text red">*</span>:</label>
+   <select class="form-control" id="Sub_CategorylD" name="Sub_CategorylD" required>	
+
+	</select>	
+  </div>
+
+    <div class="form-group">
+    <label for="Name">Product Name:</label>
+    <input type="text" value="" class="form-control" id="Name" name="Name">
+  </div>
+
+    <div class="form-group">
+    <label for="SKU">Product Code:</label>
+    <input type="text" value="" class="form-control" id="SKU" name="SKU">
+  </div>
+  
+	<div class="form-group">
+	<label for="No_of_pieces">No.of pieces:</label>
+	<input type="number" value="" class="form-control" id="No_of_pieces" name="No_of_pieces">
+	</div>
+
+
+    <div class="form-group">
+    <label for="Gross_weight">Gross weight:</label>
+    <input type="text" step="any" value="" class="form-control" id="Gross_weight" name="Gross_weight">
+  </div>
+  
+      <div class="form-group">
+    <label for="Net_weight">Net weight:</label>
+    <input type="text" step="any" value="" class="form-control" id="Net_weight" name="Net_weight">
+  </div>
+
+
+    <div class="form-group">
+    <label for="Weight">Width:</label>
+    <input type="number" step="any" value="" class="form-control" id="Width" name="Width">
+  </div>
+      <div class="form-group">
+    <label for="Height">Height:</label>
+    <input type="number" step="any" value="" class="form-control" id="Height" name="Height">
+  </div>      
+  <div class="form-group">
+    <label for="Length">Length:</label>
+    <input type="number" step="any" value="" class="form-control" id="Length" name="Length">
+  </div>
+  <!--
+    <div class="form-group">
+    <label for="CartDesc">CartDesc:</label>
+    <input type="text" value="<?php //echo $products[0]->CartDesc ?>" class="form-control" id="CartDesc" name="CartDesc">
+  </div>
+  -->
+
+  
+  <!--
+
+      <div class="form-group">
+    <label for="Thumbnail">Thumbnail:</label>
+    <input type="file" class="form-control" id="Thumbnail" name="Thumbnail">
+  </div>
+  -->
+  <input type="hidden" class="form-control" id="Thumbnail" name="Thumbnail">
+
+<div class="form-group">
+	<label for="Gender">Gender:</label>    
+	<input type="radio" name="Gender" value="Women" > Women    
+	<input type="radio" name="Gender" value="Men" > Men       
+	</div>
+
+
+	<div class="form-group">
+	<label for="Productlive">Is Product live?</label>
+	<input type="radio" name="Productlive" value="1"   > Yes
+	<input type="radio" name="Productlive" value="0"   > No
+	</div>
+	
+	<div class="form-group">
+    <label for="Provision_for_opening">Provision for opening?</label>    
+    <input type="radio" name="Provision_for_opening" value="Yes" > Yes    
+    <input type="radio" name="Provision_for_opening" value="No" > No       
+	</div>
+	
+		
+  </div>
+<div class="col-md-6">
+ 
+  
+  
+
+  <!--
+    <div class="form-group">
+    <label for="UpdateDate">UpdateDate:</label>
+    <input type="text" value="<?php //echo $products[0]->UpdateDate ?>" class="form-control" id="UpdateDate" name="UpdateDate">
+  </div>
+
+
+
+			<div class="form-group">
+			<label for="CouponID">Matal</label>
+			<select class="form-control" id="OptionGroupID" name="OptionGroupID" required>
+			<option value="">--Pick One--</option>			
+			<?php  //foreach($this->products->option_group() as $option_group) { ?>
+			<option value="<?php //echo $option_group->OptionGroupID;?>" <?php if($products[0]->OptionGroupID == $option_group->OptionGroupID){ //echo "selected"; } ?>><?php //echo ucwords($option_group->OptionGroupName);?></option>
+			<?php } ?>
+			</select>
+			</div>  
+			-->
+			
+    <div class="form-group">
+    <label for="ShortDesc">Product Short Desc:</label>
+    <textarea class="form-control" id="ShortDesc" name="ShortDesc"></textarea>
+  </div>
+          <div class="form-group">
+  <label for="LongDesc">Product Long Desc:</label>
+<textarea  class="form-control" id="LongDesc" name="LongDesc"></textarea>
+ </div>
+
+    <div class="form-group">
+    <label for="SEOTitle">SEO Title:</label>
+    <input type="text" value="" class="form-control" id="SEOTitle" name="SEOTitle">
+  </div>
+    <div class="form-group">
+    <label for="SEODesc">SEO Desc:</label>
+    <input type="text" value="" class="form-control" id="SEODesc" name="SEODesc">
+  </div>
+    <div class="form-group">
+    <label for="SEOKeywords">SEO Keywords:</label>
+    <input type="text" value="" class="form-control" id="SEOKeywords" name="SEOKeywords">
+  </div>
+  
+
+
+      <div class="form-group">
+    <label for="lmage">Image:</label>
+    <input type="file" class="form-control" id="lmage" name="lmage">
+  </div>
+ 
+  <!--
+  <div class="form-group">
+<label for="CouponID">CouponID:</label>
+<select class="form-control" id="CouponID" name="CouponID">
+<option value="Category One" <?php //if($products[0]->CouponID == "Category One"){ echo "selected"; } ?> >Category One</option>
+<option value="Category Two" <?php //if($products[0]->CouponID == "Category Two"){ echo "selected"; } ?> >Category Two</option>
+</select>
+</div>
+-->
+
+
+
+
+
+	
+
+
+	</div>
+	
+
+	
+	<div class="col-md-12">	
+	
+			<div class="form-group-sm">
+			<label for="CouponID">Material type<span class="text red">*</span>:</label>
+			<select class="form-control " id="Material_type" name="Material_type" required style="width: 20%;">
+			<option value="">-- Pick One --</option>	
+			<?php  foreach($this->products->material_types() as $option_group) { ?>
+			<option value="<?php echo $option_group->MaterialID;?>" ><?php echo ucwords($option_group->MaterialName);?></option>
+			<?php } ?>
+			
+			</select>
+			</div> 
+			<br>
+	</div>
+	
+	<div class="col-md-8">	
+	<fieldset class="border p-2">
+	
+	
+   <legend  class="w-auto" style="margin-bottom: 0px;">Material Properities</legend>  
+   
+    <div style="margin-left: -10px;text-align: end;" >
+        <span class="add"><i class="fa fa-plus-square"></i></span>
+    </div>
+	
+	
+   
+   <div class="row-fluid cloneDefault newrow" id="material_prop">
+   
+ <div class="form-group-sm">
+  <!--<label for="id" class="col-md-2 control-label">ID</label>-->
+  <div class="input-group" style="margin-bottom:0px!important;width: fit-content;">
+  	    <span class="input-group-btn">
+      <select class="form-control" name="size[]"  required id="size">
+        <option value="">-- Pick Size --</option>
+		
+		<?php  foreach($this->products->option_product_options() as $option_group) { ?>
+		<option value="<?php echo $option_group->OptionID;?>"><?php echo ucwords($option_group->OptionName);?></option>
+		<?php } ?>
+	      </select>
+    </span>
+	<!--
+    <span class="input-group-btn">
+      <select class="form-control" name="Color[]" id="Color">
+        <option value="">-- Pick Color --</option>
+		<?php  //foreach($this->products->option_product_colors() as $option_group) { ?>
+		<option value="<?php //echo $option_group->OptionID;?>"><?php //echo ucwords($option_group->OptionName);?></option>
+		<?php } ?>
+		
+		
+
+      </select>
+    </span>
+	-->
+    <span class="input-group-btn">
+      <select class="form-control" name="Karat[]" id="karat">
+        <option value="">-- Pick Karat --</option>
+		<?php  foreach($this->products->option_product_karet() as $option_group) { ?>
+		<option value="<?php echo $option_group->OptionID;?>" ><?php echo ucwords($option_group->OptionName);?></option>
+		<?php } ?>
+      </select>
+    </span>
+	
+			    <span class="input-group-btn">
+      <select class="form-control" name="G_Colors[]" id="G_Colors">
+        <option value="">-- Pick Color --</option>
+		<?php  foreach($this->products->option_gold_colors() as $option_group) { ?>
+		<option value="<?php echo $option_group->OptionID;?>"><?php echo ucwords($option_group->OptionName);?></option>
+		<?php } ?>
+      </select>
+    </span>
+
+
+	    <span class="input-group-btn">
+      <input type="text" class="form-control"  id="Mat_Pro_Weight" name="Mat_Pro_Weight[]" placeholder="Weight"  value=""  >
+    </span>
+    </div>	
+
+  </div>	
+
+</div>	
+   
+     
+	 <div id="extra_mat_prop"></div>
+  
+</fieldset>
+	
+	</div>
+	
+	
+	</div>
+	
+	
+	<br>
+	<div class="row">
+	
+	
+	<div class="col-md-8">	
+	<fieldset class="border p-2 diamond_properties">
+   <legend  class="w-auto" style="margin-bottom: 0px;">Diamond type Properities</legend>     
+    <div style="margin-left: -10px;text-align: end;" >
+        <span class="diamond_add"><i class="fa fa-plus-square"></i></span>
+    </div>
+	
+   
+   <div class="row-fluid diamond_cloneDefault newrow" id="diamond_prop"> 
+			
+<div class="form-group-sm"> 
+<div class="input-group" style="margin-bottom:0px!important;width: fit-content;">
+
+<span class="input-group-btn">
+<select class="form-control" name="DP_Color[]" id="">
+<option value="">-- Pick Color --</option>
+<?php  foreach($this->products->option_product_Diamond_Color() as $option_group) { ?>
+<option value="<?php echo $option_group->OptionID;?>"><?php echo ucwords($option_group->OptionName);?></option>
+<?php } ?>
+</select>
+</span>
+
+<span class="input-group-btn">
+<select class="form-control" name="DP_Clarity[]" id="DP_Clarity" >
+<option value="">-- Pick Clarity --</option>
+<?php  foreach($this->products->option_product_Diamond_Clarity() as $option_group) { ?>
+<option value="<?php echo $option_group->OptionID;?>" ><?php echo ucwords($option_group->OptionName);?></option>
+<?php } ?>
+</select>
+</span>
+
+	    <span class="input-group-btn">
+      <select class="form-control db-list-4 select" name="DP_Clarity_1[]" id="" >
+        <option value="">-- Pick Clarity2 --</option>
+		<?php  foreach($this->products->option_product_diamond_clarity() as $option_group) { ?>
+		<option value="<?php echo $option_group->OptionID;?>"><?php echo ucwords($option_group->OptionName);?></option>
+		<?php } ?>
+      </select>
+    </span>
+
+	    <span class="input-group-btn">
+      <input type="text" class="form-control" id="" name="DP_No_of_Diamonds[]" placeholder="No Of Diamonds" value="" >
+    </span>   
+<span class="input-group-btn">
+<input type="text" class="form-control" id="" name="DP_Weight[]" placeholder="Weight" value="" >
+</span>
+	    <span class="input-group-btn">
+      <input type="text" class="form-control" id="" name="DP_Rate[]" placeholder="Diamond Rate" value="" >
+    </span>
+</div>	
+
+</div>	
+
+     
+</div>
+
+<div id="extra_diamond_prop"></div>
+</fieldset>
+	
+	</div>
+	
+	
+	</div>
+	
+	<br>
+	<div class="row">	
+	<div class="col-md-8">	
+	<fieldset class="border p-2 ">
+   <legend  class="w-auto" style="margin-bottom: 0px;">Diamond shape Properities</legend>     
+    <div style="margin-left: -10px;text-align: end;" >
+        <span class="diamond_shape_add"><i class="fa fa-plus-square"></i></span>
+    </div>
+	
+   
+   <div class="row-fluid diamond_cloneDefault newrow" id="diamond_shape_prop"> 
+
+<div class="form-group-sm"> 
+  <div class="input-group" style="margin-bottom:0px!important;width: fit-content;">
+  
+      <span class="input-group-btn">
+        <select class="form-control" name="Diamond_Shape[]" id="">
+          <option value="">-- Pick one --</option>
+		<?php  foreach($this->products->option_product_dia_shapes() as $option_group) { ?>
+		<option value="<?php echo $option_group->OptionID;?>" ><?php echo ucwords($option_group->OptionName);?></option>
+		<?php } ?>
+        </select>
+    </span>
+	
+	   <span class="input-group-btn">
+      <input type="text" class="form-control"  name="DS_no_diamonds[]" placeholder="No Of Diamonds" value="">
+    </span>
+		   <span class="input-group-btn">
+      <input type="text" class="form-control"  name="DS_Weight[]" placeholder="Diamond Weight" value="">
+    </span>
+		   <span class="input-group-btn">
+      <input type="text" class="form-control"  name="DS_Rate[]" placeholder="Diamond Rate" value="">
+    </span>
+
+
+    </div>	
+	
+
+	
+  </div>	
+
+     
+</div>
+
+<div id="extra_diamond_shpae_prop"></div>
+</fieldset>
+	
+	</div>
+	</div>
+	
+	<br>
+	<div class="row">	
+	<div class="col-md-8">	
+	<fieldset class="border p-2">
+   <legend  class="w-auto" style="margin-bottom: 0px;">Gemstone Properities</legend>
+   
+    <div style="margin-left: -10px;text-align: end;" >
+        <span class="gemstone_add"><i class="fa fa-plus-square"></i></span>
+    </div>
+	 
+   <div class="row-fluid gemstone_cloneDefault" id="gemstone_prop">
+	
+	
+		
+
+<div class="form-group-sm"> 
+  <div class="input-group" style="margin-bottom:0px!important;width: fit-content;">
+  
+      <span class="input-group-btn">
+           <select class="form-control" name="GSN_type[]" id="">
+        <option value="">-- Pick Type --</option>
+    <?php  foreach($this->products->option_product_gemstone() as $option_group) { ?>
+    <option value="<?php echo $option_group->OptionID;?>"><?php echo ucwords($option_group->OptionName);?></option>
+    <?php } ?>
+      </select>
+    </span>
+	
+	   <span class="input-group-btn">
+      <input type="text" class="form-control" id="" name="GSN_Quantity[]" placeholder="Gemstone quantity" value="">
+    </span>
+		   <span class="input-group-btn">
+      <input type="text" class="form-control" id="" name="GSN_Weight[]" placeholder="Gemstone weight" value="">
+    </span>
+		   <span class="input-group-btn">
+      <input type="text" class="form-control" id="" name="GSN_Rate[]" placeholder="Gemstone rate" value="">
+    </span>
+
+
+    </div>	
+	
+	
+  </div>	
+
+     
+</div>
+
+<div id="extra_gemstone_prop"></div>
+</fieldset>
+	
+	</div>
+	</div>	
+	<br>
+	<div class="row">	
+	<div class="col-md-8">	
+<fieldset class="border p-2">	
+   <legend  class="w-auto"> Pearls Properities</legend>  
+   <div class="row-fluid">
+
+
+   <div class="form-group-sm" >
+  <!--<label for="id" class="col-md-2 control-label">ID</label>-->
+  <div class="input-group" style="margin-bottom:0px!important;width: fit-content;">
+	<span class="input-group-btn">
+    <select class="form-control" name="Pearls[]" id="Pearls">
+    <option value="">-- Pick one --</option>
+    <?php  foreach($this->products->option_product_pearls() as $option_group) { ?>
+    <option value="<?php echo $option_group->OptionID;?>" ><?php echo ucwords($option_group->OptionName);?></option>
+    <?php } ?>
+    </select>
+    </span>	
+		
+	    <span class="input-group-btn">     
+			
+      <input type="text" class="form-control"  placeholder="Pearls Quantity" id="Pearls_quantity" name="Pearls_quantity"   value="" >
+    </span>
+    
+	    <span class="input-group-btn">
+      <input type="text" class="form-control"  id="" name="Pearl_Weight" placeholder="Pearl Weight"  value="" >
+    </span>
+	<span class="input-group-btn">
+      <input type="text" class="form-control"  id="" name="Pearls_Rate" placeholder="Pearls Rate" value="" >
+    </span>
+    </div>	
+	
+
+  </div>	
+
+
+  
+
+
+</div>	
+   
+     
+	
+  
+</fieldset>
+	
+	
+	
+	</div>
+	</div>
+	<hr>
+	<div class="row making_charges">
+	<div class="col-md-3">
+	 <div class="form-group-sm">
+    <label for="Making_charges_unit">Making charges unit:</label>
+           <select class="form-control" name="Making_charges_unit" id="Making_charges_unit" >
+		    <option value="">-- Pick one --</option>
+        <option value="gram" >Gram</option>
+		 <option value="fix">Fix</option>
+		 </select>
+  </div>
+  </div>
+  
+    <div class="col-md-3">
+  <div class="form-group-sm">    
+  <label for="Making_charges">Making charges unit price:</label>
+    <input type="number"  class="form-control" id="Making_charges" name="Making_charges"  value="">
+  </div>
+  </div>
+    <div class="col-md-3">
+  <div class="form-group-sm">  
+ <label for="Price">On gross weight/net weight:</label>  
+          <select class="form-control" name="Making_chg_On_Grs_Net_Weight" id="Making_chg_On_Grs_Net_Weight" >
+		   <option value="">-- Pick one --</option>
+        <option value="gross weight" >Gross weight</option>
+		 <option value="net weight" >Net weight</option>
+		 </select>
+  </div>
+  </div>
+  
+   </div>
+  <br>
+<!--
+<div class="col-md-1">
+      <div class="form-group-sm">
+    <label for="Price">Price:</label>
+    <input type="number" value="<?php //echo $products[0]->Price ?>" class="form-control" id="Price" name="Price">
+  </div>
+  </div>
+    -->
+	<div class="row">
+  <div class="col-md-1">
+  <div class="form-group">
+<label for="Stock">Stock:</label>
+<input type="number" value="" class="form-control" id="Stock" name="Stock">
+</div>  
+  </div>
+  <div class="col-md-3">
+<div class="form-group">
+<label for="Polish_Details">Polish Details:</label>
+<input type="text" value="" class="form-control" id="Polish_Details" name="Polish_Details">
+</div>  
+</div>
+
+  </div>	
+  
+
+
+	
+	<input type="hidden" value="0" id="Price" name="Price">
+
+	
+	<button type="submit" class="btn btn-primary pull-right">Submit</button>
+	
+	<input type="hidden" id="OptionGroupID" name="OptionGroupID" value=0>
+				   
+				   
+	
+	
+    </form> 
+	
+	
+					
+					
+					
+                  </div>
+                </div>
+              </div>
+
+  </div>
+</div>
+
+
+
+

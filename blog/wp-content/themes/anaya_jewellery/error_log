@@ -1,0 +1,24 @@
+[20-Aug-2020 10:58:20 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php on line 1
+[20-Aug-2020 10:59:23 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php on line 1
+[20-Aug-2020 10:59:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php on line 1
+[23-Aug-2020 14:30:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php on line 1
+[08-Oct-2020 07:45:51 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php on line 1
+[08-Oct-2020 07:47:00 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/deepred/public_html/demos/anaya/blog/wp-content/themes/anaya_jewellery/index.php on line 1

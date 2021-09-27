@@ -1,0 +1,40 @@
+$("form").validate({
+      rules:{
+        Coupon_title:{  
+          required:true,
+          // alphanumspace:true,
+          minlength:3,
+          maxlength:50
+        },
+        CouponCode:{  
+          required:true,
+          // alphanumeric:true,
+          minlength:3,
+          maxlength:10
+        },      
+        Description:{
+          required:true,
+          // alphanumspace:true,
+          minlength:3,
+          maxlength:250
+        },
+        Discount_value:{
+          required:true,
+          numeric:true,
+        },
+        DiscountType:{
+          required:true,
+          numeric:true,
+        },
+        CouponExpiryDate:{
+          future_date:true,
+          required:true,
+        },
+        Is_Active:{
+          required:true,
+       },
+       Is_public:{
+          required:true,
+       },
+    }
+});

@@ -1,0 +1,230 @@
+<!-- PAGE BODY : BEGIN -->
+<main class="main-content">
+
+    
+<section class="info">
+    <div class="container">
+  
+  
+      <?php
+                        if (is_array($products)) {
+                        
+                        ?>     
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row m-0 cart-total justify-content-between">
+                    <span class="intro-text text-dark">Total (<?php echo $sub_total_data['total_items'];?> Items) : ₹<?php echo $sub_total_data['ac_price'];?></span>
+                    <!-- <span class="save-cart"><a href="" class="text-brand">Save Cart</a></span> -->
+                </div>
+                <div class="cart-container">
+                    <!-- cart-card : BEGIN -->
+                                 
+<?php foreach ($products as $key => $value) {  ?>
+                    <div class="cart-card">
+                        <div class="cart-wrap-left">
+                            <div class="cart-thumb">
+                                
+                                <a  href="<?php echo base_url().'product/'.$value->slug;?>">
+                
+                <?php
+                
+                    $image = $value->SKU.'_thumbnail.jpg'; 
+                    $image_path = base_url().'uploads/products/'.$image;                    
+                    if(file_exists("./uploads/products/$image")){
+                      $image_path = $image_path;
+                    }
+                    else{
+                      $image_path = base_url().'/uploads/Not_Available.jpg';
+                    }
+                ?>
+                
+                <img src="<?php echo $image_path;?>" alt=""></a>
+                            </div>
+                            <div class="cart-info">
+                                <div class="cart-details">
+                                    <p class="item-name"><a href="<?php echo base_url().'product/'.$value->slug;?>"><?php echo ucwords($value->ProductName);?></a></p>
+                                    <p class="item-sku"><?php echo ucwords($value->ProductSKU);?></p>
+                                    <p class="item-qty text-bold">Quantity : <span class="form-group">
+                                        <select name="cart_item_quantity" class="form-controle custome-select" id="cart_item_quantity" onchange="updateItemQty(this.value,<?php echo $value->Order_DetailsID;?>)">
+                                        <option value="1" <?php if($value->Quantity=="1") { ?> selected <?php } ?>>1</option>
+                                        <option value="2" <?php if($value->Quantity=="2") { ?> selected <?php } ?>>2</option>
+                                        <option value="3" <?php if($value->Quantity=="3") { ?> selected <?php } ?>>3</option>
+                                        <option value="4" <?php if($value->Quantity=="4") { ?> selected <?php } ?>>4</option>
+                                        <option value="5" <?php if($value->Quantity=="5") { ?> selected <?php } ?>>5</option>
+                                        </select>
+                                    </span></p>
+                                    <p class="item-inventory">Last 4
+                                </div></p>
+
+                                <p><?php echo ucwords($value->order_method);?> Order</p>
+                                <div class="cart-price-datils">
+                                   <!--  <p class="item-edd">Expected Delivery - 28th to 29th Aug</p> -->
+                                    <p class="item-price">₹<?php echo $this->purchase_cart->number_format($value->Amount);?> <span class="strike">₹<?php echo $this->purchase_cart->number_format($value->MRP_Amount);?></span> <span class="save">Save ₹<?php echo $this->purchase_cart->number_format($value->MRP_Amount*1-$value->Amount*1);?></span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-wrap-right">
+                            <div class="cart-btns">
+                                <a onclick="return confirm('Are you sure you want to remove?')" href="<?php echo base_url();?>cart/remove/<?php echo $value->Order_DetailsID;?>/<?php echo $value->ProductID;?>/<?php echo $value->OrderID;?>"><button class="btn btn-default default-accent btn-block">Remove</button></a>
+
+<!--                                     <a href="<?php echo base_url();?>cart/save_wishlist/<?php echo $value->ProductID;?>">
+                                    <button data-data="<?php echo $value->ProductID;?>" class="btn btn-default default-brand btn-block addtowishlist" id="">Move to Wish list</button>
+                                    </a> -->
+
+                                    <a href="<?php echo base_url();?>cart/save_wishlist/<?php echo $value->ProductID;?>/<?php echo $value->Order_DetailsID;?>/<?php echo $value->OrderID;?>">
+                                    <button  class="btn btn-default default-brand btn-block " id="">Move to Wish list</button>
+                                    </a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- cart-card : END -->
+                <?php }  ?>
+
+
+                  
+
+                   
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="cart-checkout">
+                    <!-- <button class="apply-cupon btn btn-default btn-block btn-lg mt-0">Apply Coupon <span>1 Available Coupon</span></button> -->
+                    <span class="intro-text text-dark d-inline-block mb-2">Order Summary</span>
+                    <div class="card rounded-0">
+                        <div class="card-body py-3">
+                            <p class="d-flex flex-row justify-content-between"><span>Subtotal</span> <span class="price">₹
+                            <?php echo $this->purchase_cart->number_format($sub_total_data['mrp']);?>
+                                
+                            </span></p>
+                            <p class="d-flex flex-row justify-content-between"><span>You Saved</span> <span class="price text-brand">- ₹<?php echo $this->purchase_cart->number_format($sub_total_data['save_price']);?></span></p>
+                            <p class="d-flex flex-row justify-content-between"><span>Coupon Discount</span> <span class="price text-brand"><a href="" class="text-voilet" data-toggle="modal" data-target="#applyCuponModal">Apply Cupoun</a></span></p>
+                            <p class="d-flex flex-row justify-content-between"><span>Delivery Charge (Standard)</span> <span class="price text-brand"><?php echo $this->purchase_cart->number_format(0);?></span></p>
+                            <p class="d-flex flex-row justify-content-between font-weight-bold mb-0"><span class=" text-uppercase">Total Cost</span> <span class="price">₹
+                            <?php echo $this->purchase_cart->number_format($sub_total_data['ac_price']);?>
+
+                            </span></p>
+                        </div>
+                    </div>
+                    <a href="<?php echo base_url();?>cart/checkout">
+                     <button class="btn btn-brand btn-lg btn-block mt-4">Checkout Securely</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    
+    <?php } else { ?>
+    
+    
+     <div class="row">
+            <div class="col-lg-12 text-center">
+    <div class="css-rgxxes"><p><span class="er6wa4k0 css-34gj24 efp5dbi0"></span></p><p class="title">Empty Bag!</p><p class="sub-title">Let's do some retail therapy!</p><a href="<?php echo base_url();?>products"><button content="Start Shopping" class="btn btn-brand m-0 mt-1">Start Shopping</button></a></div>
+    </div>
+    </div>
+    <?php } ?>
+    
+    
+    </div>
+</section>
+</main>
+
+
+<!-- MODEL POPUP : BEGIN -->
+
+<div class="modal fade" id="applyCuponModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title text-center">Coupons</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body coupon-container">
+
+        <!-- COUPON CARD -->
+        <?php if (!empty($coupons)): ?>
+          <?php foreach ($coupons as $key => $coupon): ?> 
+
+          <div class="card coupon-card">
+          <div class="card-body row p-0 m-0">
+            <div class="col p-0 bg-light">
+              <div class="coupon-badge text-center">
+                <h4 class="badge-title"><?php echo $coupon->Discount_value; 
+                  if($coupon->DiscountType == 'percent') echo "%Percet OFF";
+                  if($coupon->DiscountType == 'fixed') echo "Rs Flat OFF";
+                  ?></h4>
+              </div>
+            </div>
+            <div class="col-6 align-self-center">
+              <div class="coupoun-disc">
+                <h4 class="mb-1 p-0"><?php echo $coupon->Coupon_title ?></h4>
+                <p class="p-0 m-0"><?php echo $coupon->Description ?></p>
+              </div>
+            </div>
+            <div class="col p-0 align-self-center">
+
+              <div class="coupoun-apply">
+                <form action="" class="coupon_form">
+                  <input type="hidden" name="coupon_id" value="<?php echo $coupon->CouponID ?>">
+                  <button class="btn btn-default">Apply</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <?php endforeach ?>
+         <?php endif ?>
+
+        <!-- COUPON CARD -->
+        <!-- <div class="card coupon-card">
+          <div class="card-body row p-0 m-0">
+            <div class="col p-0 bg-light">
+              <div class="coupon-badge text-center">
+                <h4 class="badge-title">30% OFF</h4>
+              </div>
+            </div>
+            <div class="col-6 align-self-center">
+              <div class="coupoun-disc">
+                <h4 class="mb-1 p-0">Coupon 01</h4>
+                <p class="p-0 m-0">Extra 3% off on diamond jewellery above Rs 60,000</p>
+              </div>
+            </div>
+            <div class="col p-0 align-self-center">
+              <div class="coupoun-apply">
+                <button class="btn btn-default">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- COUPON CARD -->
+      <!--   <div class="card coupon-card">
+          <div class="card-body row p-0 m-0">
+            <div class="col p-0 bg-light">
+              <div class="coupon-badge text-center">
+                <h4 class="badge-title">30% OFF</h4>
+              </div>
+            </div>
+            <div class="col-6 align-self-center">
+              <div class="coupoun-disc">
+                <h4 class="mb-1 p-0">Coupon 01</h4>
+                <p class="p-0 m-0">Extra 3% off on diamond jewellery above Rs 60,000</p>
+              </div>
+            </div>
+            <div class="col p-0 align-self-center">
+              <div class="coupoun-apply">
+                <button class="btn btn-default">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div> -->
+         <!-- COUPON CARD -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- MODEL  -->

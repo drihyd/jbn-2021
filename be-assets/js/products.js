@@ -1,0 +1,3 @@
+/*Get filter values on changes
+ajax to fetch products baswed on input post variables
+replace html content in prodcuts container*/
