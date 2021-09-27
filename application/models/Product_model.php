@@ -81,13 +81,13 @@ class Product_model extends CI_Model
 
 	public function product_fields()
 	{
-		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.Gender,p.sub_product_type,p.ProductID ,p.CategoryID ,p.SKU,p.Net_weight,p.slug,p.Width,p.Height,p.Length,p.Making_charges,p.Productlive,p.Length,p.Name,p.CartDesc,p.ShortDesc,p.LongDesc,p.Thumbnail,p.product_video_url,p.product_vimeo_url,p.Stock,p.MRP_Price,p.Price,p.SEOTitle,p.SEODesc,p.SEOKeywords,p.is_make_an_order')
+		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.Gender,p.sub_product_type,p.ProductID ,p.CategoryID ,p.SKU,p.Net_weight,p.Gross_weight,p.slug,p.Width,p.Height,p.Length,p.Making_charges,p.Productlive,p.Length,p.Name,p.CartDesc,p.ShortDesc,p.LongDesc,p.Thumbnail,p.product_video_url,p.product_vimeo_url,p.Stock,p.MRP_Price,p.Price,p.SEOTitle,p.SEODesc,p.SEOKeywords,p.is_make_an_order')
 		->from('products p');
 	}
 
 	public function product_with_category()
 	{
-		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.Gender,p.sub_product_type,p.ProductID ,p.CategoryID,p.product_type ,p.SKU,p.Net_weight,p.slug,p.Width,p.Height,p.Length,p.Making_charges,p.Productlive,p.Length,p.Name,p.CartDesc,p.ShortDesc,p.LongDesc,p.Thumbnail,p.product_video_url,p.product_vimeo_url,p.Stock,p.MRP_Price,p.Price,p.SEOTitle,p.SEODesc,p.SEOKeywords,p.is_make_an_order,c.CategoryID,c.CategoryName,c.CategoryImage,c.CategoryDesc,c.CategorySlug, c.is_customizable')
+		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.Gender,p.sub_product_type,p.ProductID ,p.CategoryID,p.product_type ,p.SKU,p.Net_weight,p.Gross_weight,p.slug,p.Width,p.Height,p.Length,p.Making_charges,p.Productlive,p.Length,p.Name,p.CartDesc,p.ShortDesc,p.LongDesc,p.Thumbnail,p.product_video_url,p.product_vimeo_url,p.Stock,p.MRP_Price,p.Price,p.SEOTitle,p.SEODesc,p.SEOKeywords,p.is_make_an_order,c.CategoryID,c.CategoryName,c.CategoryImage,c.CategoryDesc,c.CategorySlug, c.is_customizable')
         ->from('products p')
         ->join('product_category c', 'c.CategoryID = p.CategoryID', 'left');
 	}

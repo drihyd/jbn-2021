@@ -17,6 +17,8 @@
                       
 
 
+
+
 $product_image = $imagesku=str_replace(' ', '_', $product->SKU);
 $images = glob(APPPATH . '../uploads/products/'.$product_image.'??.jpg',GLOB_BRACE );
 
@@ -194,11 +196,13 @@ foreach ($images as $image) {
                   <tbody>
                     <?php if (!empty($product->sizes) && $product->sizes[0]->OptionSize != 0): ?>
                       <input type="hidden" name="product_size" value="<?php echo $product->sizes[0]->OptionSize ?>">
-                             <tr>
+                       
+					   <!--
+					   <tr>
                         <td><b>Metal type: </b></td>
                         <td><?php echo $product->sizes[0]->OptionSize ?></td>
                       </tr>
-                      
+                      -->
                       <tr>
                         <td><b>Size: </b></td>
                         <td><?php echo $product->sizes[0]->OptionSize ?></td>
@@ -207,7 +211,7 @@ foreach ($images as $image) {
                     <?php if (!empty($product->metals_options)): ?>
                       <input type="hidden" name="product_metal" value="<?php echo $product->metals_options[0]->Combination_Option_Name ?>">
                     <tr>
-                      <td><b>Metal: </b></td>
+                      <td><b>Purity: </b></td>
                       <td><?php echo $product->metals_options[0]->Combination_Option_Name ?></td>
                     </tr>
                   <?php endif ?>                    
@@ -218,10 +222,15 @@ foreach ($images as $image) {
                       <td><?php echo $product->diamonds[0]->Combination_Option_Name.'-'.$product->diamonds[0]->OptionName ?></td>
                     </tr>
                   <?php endif ?>                   
-                    <tr>
+                    
                       <tr>
-                      <td><b>Weight: </b></td>
+                      <td><b>Net Weight: </b></td>
                       <td><?php echo $product->Net_weight ?> grams</td>
+                    </tr> 
+
+					<tr>
+                      <td><b>Gross Weight: </b></td>
+                      <td><?php echo $product->Gross_weight ?> grams</td>
                     </tr>
                     <tr>
                       <td><b>Width: </b></td>

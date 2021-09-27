@@ -325,6 +325,8 @@ redirect('products','refresh');
         if(isset($product_data_array['Diamond_Shape'])){
 
 
+
+
             foreach($product_data_array['DP_Clarity'] AS $key=>$value)
             {
                 if(!empty($product_data_array['Diamond_Shape'][$key])){
@@ -1780,17 +1782,10 @@ public function product_general_information($selectedids=false)
 
         $sku_array=array("SKU"=>trim($single_product->product_code));
 
-
-
-
-
-
         if($exist_product=$this->core->get("products",$sku_array)) {
             $delete_array=array("ProductID"=>$exist_product[0]->ProductID);
             $this->core->delete("product_option",$delete_array);
-
             $ProductID=$exist_product[0]->ProductID;
-
             $this->products->update($ProductID,$product_array);  
 
         
@@ -1864,16 +1859,24 @@ public function product_general_information($selectedids=false)
       if(!empty($diamondshape)){
 
         $color_clarity=explode("-", $colorpurity);
-
-        if($d_color_vld=$this->products->get_Generic_Query("productoptions","","","",array("OptionName"=>$color_clarity[0]),1))
-        {
-            $dcolor=$d_color_vld[0]->OptionID;
-        }
-        else
-        {
-            $dcolor=0;
-        }
+		
+	
+		if($color_clarity[0]){
+			if($d_color_vld=$this->products->get_Generic_Query("productoptions","","","",array("OptionName"=>$color_clarity[0]),1))
+			{
+				$dcolor=$d_color_vld[0]->OptionID;
+			}
+			else
+			{
+				$dcolor=0;
+			}
+			}
+		else{
+			$dcolor=0;
+		}
  
+ 
+	if($color_clarity[1]){
         if($d_clartiy_vld=$this->products->get_Generic_Query("productoptions","","","",array("OptionName"=>$color_clarity[1]),5))
         {
             $dclarity=$d_clartiy_vld[0]->OptionID;
@@ -1882,6 +1885,10 @@ public function product_general_information($selectedids=false)
         {
             $dclarity=0;
         }
+	}
+	else{
+		$dclarity=0;
+	}
 
         if($certifyname=$this->products->get_Generic_Query("productoptions","","","",array("OptionName"=>$certifyname),10))
         {
