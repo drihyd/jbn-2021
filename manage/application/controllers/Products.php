@@ -453,6 +453,7 @@ redirect('products','refresh');
                     $pear_data['Combination_OptionID']=0;
                     $pear_data['Combination_OptionID_Secnd']=0;
                     $pear_data['OptionID']=$product_data_array['beads'][$key];
+					
                     $product_option_id=$this->core->insert("product_option",$pear_data);
                 }                
             }

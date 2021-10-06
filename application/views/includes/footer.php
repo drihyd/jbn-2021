@@ -223,6 +223,15 @@ $('.showcase-slider').slick({
 		arrows: true,
 		infinite: true,
 		loop: true,
+		responsive: [{
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+        }
+      }
+      ],
     prevArrow: $('.new-arrivals-slider-nav-list .slider-nav.prev'),
     nextArrow: $('.new-arrivals-slider-nav-list .slider-nav.next'),
 	});

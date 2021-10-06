@@ -31,7 +31,7 @@
 <!-- BOOTSTRAP INCLUDE : END -->
 <!-- SLICK CSS : BEGIN -->
 <!-- defer -->
-  <link rel="stylesheet" href="https://deepredink.in/taruni-v2/assets/css/main.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets') ?>/css/product-zoom.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
 <!-- enddefer -->
 <!-- SLICK CSS : END -->

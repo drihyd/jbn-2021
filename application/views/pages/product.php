@@ -1,4 +1,4 @@
-<main class="main-content">
+<main class="main-content" style="display: block;">
     <section class="info">
         <div class="container">
             <div class="row">
@@ -237,13 +237,20 @@ foreach ($images as $image) {
                       <td><?php echo $product->Width ?> mm</td>
                     </tr>
                     <tr>
+					<!-- length and height column are interchanged -->
                       <td><b>Height: </b></td>
-                      <td><?php echo $product->Height ?> mm</td>
+                      <td><?php echo $product->Length ?> mm</td>
                     </tr>
                     <tr>
                       <td><b>Length: </b></td>
-                      <td><?php echo $product->Length ?> mm</td>
-                    </tr>   
+                      <td><?php echo $product->Height ?> mm</td>
+                    </tr>     
+					<?php if($product->chain_length){ ?>
+					<tr>
+					<td><b>Chain Length: </b></td>
+					<td><?php echo $product->chain_length ?> mm</td>
+					</tr>
+					<?php } ?>
                     
                     <tr>
                       <td><b>Numbers of Pieces: </b></td>
@@ -415,12 +422,12 @@ foreach ($images as $image) {
           <div class="col-12 col-lg-10 col-xl-10">
             <div class="list-group list-group-horizontal" id="h-pills-tab" role="tablist" aria-orientation="horizontal">
 
-              <a class="list-group-item list-group-item-action active" id="h-pills-Product-tab" data-toggle="pill" href="#h-pills-Product" role="tab" aria-controls="h-pills-Product" aria-selected="true">Material Details</a>
+              <a class="list-group-item list-group-item-action active" id="h-pills-Product-tab" data-toggle="pill" href="#h-pills-Product" role="tab" aria-controls="h-pills-Product" aria-selected="true">Product Details</a>
               <?php if (!empty($product->diamonds)): ?>
               <a class="list-group-item list-group-item-action" id="h-pills-Diamond-tab" data-toggle="pill" href="#h-pills-Diamond" role="tab" aria-controls="h-pills-Diamond" aria-selected="true">Diamond Details</a>                
               <?php endif ?>
 
-              <a class="list-group-item list-group-item-action" id="h-pills-Metal-tab" data-toggle="pill" href="#h-pills-Metal" role="tab" aria-controls="h-pills-Metal" aria-selected="true">Metal Details</a>
+              <a class="list-group-item list-group-item-action" id="h-pills-Metal-tab" data-toggle="pill" href="#h-pills-Metal" role="tab" aria-controls="h-pills-Metal" aria-selected="true">Other Stone Details</a>
 
               <a class="list-group-item list-group-item-action" id="h-pills-Price-tab" data-toggle="pill" href="#h-pills-Price" role="tab" aria-controls="h-pills-Price" aria-selected="true">Price breakup</a>
 
@@ -429,7 +436,9 @@ foreach ($images as $image) {
             </div>
             </div>
             
-             <div class="col-6">
+             <div class="col-sm-6">
+
+
 
             <div class="tab-content p-3" id="h-pills-tabContent">
 
@@ -438,34 +447,34 @@ foreach ($images as $image) {
                 <table  class="table  product_info_table">
                   <tbody>
                     <tr>
-                      <td>SKU</td>
-                      <td align="right"><?php echo $product->SKU ?></td>
+                      <td>Product Code</td>
+                      <td align="right"><?php echo $product->SKU; ?></td>
                     </tr>
-                   <!--  <tr>
-                      <tr>
-                      <td><b>Weight: </b></td>
-                      <td><?php //echo $product->Net_weight ?></td>
-                    </tr>
-                    <tr>
-                      <td><b>Width: </b></td>
-                      <td><?php //echo $product->Width ?> mm</td>
-                    </tr>
-                    <tr>
-                      <td><b>Height: </b></td>
-                      <td><?php //echo $product->Height ?> mm</td>
-                    </tr>
-                    <tr>
-                      <td><b>Length: </b></td>
-                      <td><?php //echo $product->Length ?> mm</td>
-                    </tr> -->
-                    <tr>
-                      <td>Category</td>
-                      <td align="right"><?php echo ucwords($product->CategoryName); ?></td>
-                    </tr>
-                    <tr>
-                      <td>Description</td>
-                      <td align="right"><?php echo ucwords($product->ShortDesc) ?></td>
-                    </tr>
+					<tr>
+                      <td>Height</td>
+                      <td align="right"><?php echo $product->Height; ?> mm</td>
+					</tr>
+					<tr>
+                      <td>Net Weight</td>
+                      <td align="right"><?php echo $product->Net_weight; ?> grams</td>
+					</tr>					
+					<tr>
+                      <td>Gross Weight</td>
+                      <td align="right"><?php echo $product->Gross_weight; ?> grams</td>
+					</tr>
+					<tr>
+                      <td>Material</td>
+                      <td align="right"><?php echo $product->mtname; ?></td>
+					</tr>	
+					<tr>
+                      <td>Metal Types</td>
+                      <td align="right"><?php echo $product->Polish_Details; ?></td>
+					</tr>	
+					<tr>
+                      <td>Polish Details</td>
+                      <td align="right"><?php echo $product->Polish_Details; ?></td>
+					</tr>        
+              
                   </tbody>
                 </table>
               </div>
@@ -474,49 +483,215 @@ foreach ($images as $image) {
               <div class="tab-pane fade" id="h-pills-Diamond" role="tabpanel" aria-labelledby="h-pills-Diamond-tab">
                 <?php if (!empty($product->diamonds)): 
                  ?>
+				 
+				 
+				 <p>Total Number of diamonds: <?php echo sizeof($product->diamonds);?></p>
                    
-                  <table class="table  product_info_table" width="50%">
+                  <div class="table-responsive">
+                      <table class="table product_info_table">
                     <tbody>
                       <tr>
+                      <th>Diamonds</th>
                       <th>Color</th>
-                      <th>Clarity</th>
-					  <th>Weight</th>
+					  <th>Clarity</th>
+                      <th>Weight</th>
+                      <th>Shape</th>
+                      <th>Quantity</th>
                       <th>Unit Price</th>
                       </tr>
-                      <?php foreach ($product->diamonds as $key => $diamond): ?>
+                      <?php 
+					  $sb=1;
+					  foreach ($product->diamonds as $key => $diamond): ?>
+					  
+					  
+					  
                       <tr>
-                        <td><?php echo $diamond->Combination_Option_Name ?></td>
-                        <td><?php echo $diamond->OptionName ?></td>
-                        <td><?php echo $diamond->OptionWeight ?></td>
-                        <td><?php echo $diamond->OptionPriceincrement ?></td>
+						<th>Diamond<?php echo $sb;?></th>
+                        <td><?php echo ucwords($diamond->Combination_Option_Name); ?></td>
+                        <td><?php echo ucwords($diamond->OptionName); ?></td>
+						<td><?php echo ucwords($diamond->OptionWeight); ?></td>
+                        <td><?php echo ucwords($diamond->diamonshape); ?></td>
+						<td><?php echo ucwords($diamond->Quantity); ?></td>  
+                        <td><?php echo ucwords($diamond->OptionPriceincrement); ?></td>
                       </tr>
-                       <?php endforeach ?> 
+					
+                       <?php
+
+                        $sb++;
+					   endforeach ?> 
                     </tbody>
                   </table>
+                  </div>
+				  
                                 
                 <?php endif ?>
               </div>
 
               <!-- tab-pane -->
               <div class="tab-pane fade" id="h-pills-Metal" role="tabpanel" aria-labelledby="h-pills-Metal-tab">
-                <table  class="table  product_info_table">
-                  <tbody>
-                    <tr>
-                      <th>Size</th>
-                      <th>Metal</th>
-                      <th>Weight</th>
-                    </tr>
-                    <?php if (!empty($product->material)): ?>
-                    <?php foreach ($product->material as $key => $metal): ?>
+               
+
+
+ 
+ 
+			   <?php 
+			   
+			   
+
+	$nofpearls=isset($product->pearls)?sizeof($product->pearls):0;
+	$nofgemstones=isset($product->gemstones)?sizeof($product->gemstones):0;
+	$nofdiamond_shapes=isset($product->diamond_shapes)?sizeof($product->diamond_shapes):0;
+	$nofothers=isset($product->others)?sizeof($product->others):0;
+	$nofbeads=isset($product->beads)?sizeof($product->beads):0;
+	$nofpolki=isset($product->polki)?sizeof($product->polki):0;
+
+			   ?>
+				 
+				  <p>Total Number of Stones: <?php echo $nofpearls+$nofgemstones+$nofdiamond_shapes+$nofothers+$nofbeads+$nofpolki;?></p>
+				
+                   
+                  <table class="table  product_info_table" width="50%">
+                    <tbody>
                       <tr>
-                      <td><?php echo $metal->OptionSize ?></td>
-                      <td><?php echo $metal->Combination_Option_Name ?></td>
-                      <td><?php echo $metal->OptionWeight ?> grams</td>
+                      <th>Stone</th> 
+					  <th>Shape</th>					  
+					  <th>Quantity</th>					  
+                      <th>Weight</th>                      
+                      <th>Unit Price</th>
                       </tr>
-                    <?php endforeach ?>
-                    <?php endif ?>
-                  </tbody>
-                </table>
+					  
+					  <?php if(isset($product->pearls)): ?>
+                      <?php foreach ($product->pearls as $key => $diamond): ?>					  
+                      <tr>
+						<th><?php echo ucwords($diamond->attribute_type); ?></th>
+						<?php if($diamond->OptionName) { ?>
+						<td><?php echo ucwords($diamond->OptionName); ?></td>  
+
+						<?php } else { ?>
+						<td><?php echo ucwords($diamond->diamonshape); ?></td>
+						<?php } ?>						
+						<td><?php echo ucwords($diamond->Quantity); ?></td>    
+   
+						<td><?php echo ucwords($diamond->OptionWeight); ?></td>                        
+                        <td><?php echo ucwords($diamond->OptionPriceincrement); ?></td>
+                      </tr>				
+                       <?php endforeach ?>
+					   <?php endif ?>					   
+					   
+			   <?php if(isset($product->gemstones)): ?>				   
+					   
+					    <?php foreach ($product->gemstones as $key => $diamond): ?>					  
+                      <tr>
+						<th><?php echo ucwords($diamond->attribute_type); ?></th>
+						<?php if($diamond->OptionName) { ?>
+						<td><?php echo ucwords($diamond->OptionName); ?></td>  
+
+						<?php } else { ?>
+						<td><?php echo ucwords($diamond->diamonshape); ?></td>
+						<?php } ?>						
+						<td><?php echo ucwords($diamond->Quantity); ?></td>    
+   
+						<td><?php echo ucwords($diamond->OptionWeight); ?></td>                        
+                        <td><?php echo ucwords($diamond->OptionPriceincrement); ?></td>
+                      </tr>				
+                       <?php endforeach ?>
+					   
+					   <?php endif ?>
+					   
+					   
+					   <?php if(isset($product->diamond_shapes)): ?>				   
+					   
+					    <?php foreach ($product->diamond_shapes as $key => $diamond): ?>					  
+                      <tr>
+						<th><?php echo ucwords($diamond->attribute_type); ?></th>
+						<?php if($diamond->OptionName) { ?>
+						<td><?php echo ucwords($diamond->OptionName); ?></td>  
+
+						<?php } else { ?>
+						<td><?php echo ucwords($diamond->diamonshape); ?></td>
+						<?php } ?>						
+						<td><?php echo ucwords($diamond->Quantity); ?></td>    
+   
+						<td><?php echo ucwords($diamond->OptionWeight); ?></td>                        
+                        <td><?php echo ucwords($diamond->OptionPriceincrement); ?></td>
+                      </tr>				
+                       <?php endforeach ?>
+					   
+					   <?php endif ?>
+					   
+					   <?php if(isset($product->others)): ?>				   
+					   
+					    <?php foreach ($product->others as $key => $diamond): ?>					  
+                      <tr>
+						<th><?php echo ucwords($diamond->attribute_type); ?></th>
+						<?php if($diamond->OptionName) { ?>
+						<td><?php echo ucwords($diamond->OptionName); ?></td>  
+
+						<?php } else { ?>
+						<td><?php echo ucwords($diamond->diamonshape); ?></td>
+						<?php } ?>						
+						<td><?php echo ucwords($diamond->Quantity); ?></td>    
+   
+						<td><?php echo ucwords($diamond->OptionWeight); ?></td>                        
+                        <td><?php echo ucwords($diamond->OptionPriceincrement); ?></td>
+                      </tr>				
+                       <?php endforeach ?>
+					   
+					   <?php endif ?>
+					   
+					   <?php if(isset($product->beads)): ?>				   
+					   
+					    <?php foreach ($product->beads as $key => $diamond): ?>					  
+                      <tr>
+						<th><?php echo ucwords($diamond->attribute_type); ?></th>
+						<?php if($diamond->OptionName) { ?>
+						<td><?php echo ucwords($diamond->OptionName); ?></td>  
+
+						<?php } else { ?>
+						<td><?php echo ucwords($diamond->diamonshape); ?></td>
+						<?php } ?>						
+						<td><?php echo ucwords($diamond->Quantity); ?></td>    
+   
+						<td><?php echo ucwords($diamond->OptionWeight); ?></td>                        
+                        <td><?php echo ucwords($diamond->OptionPriceincrement); ?></td>
+                      </tr>				
+                       <?php endforeach ?>
+					   
+					   <?php endif ?>
+					   
+					   <?php if(isset($product->polki)): ?>				   
+					   
+					    <?php foreach ($product->polki as $key => $diamond): ?>					  
+                      <tr>
+						<th><?php echo ucwords($diamond->attribute_type); ?></th>
+						<?php if($diamond->OptionName) { ?>
+						<td><?php echo ucwords($diamond->OptionName); ?></td>  
+
+						<?php } else { ?>
+						<td><?php echo ucwords($diamond->diamonshape); ?></td>
+						<?php } ?>						
+						<td><?php echo ucwords($diamond->Quantity); ?></td>    
+   
+						<td><?php echo ucwords($diamond->OptionWeight); ?></td>                        
+                        <td><?php echo ucwords($diamond->OptionPriceincrement); ?></td>
+                      </tr>				
+                       <?php endforeach ?>
+					   
+					   <?php endif ?>
+					   
+
+					   
+                    </tbody>
+                  </table>
+				  
+                                
+           
+				
+				
+				
+				
+				
+				
               </div>
 
               <!-- tab-pane -->
@@ -538,6 +713,11 @@ foreach ($images as $image) {
       </div>
     </section>
 
+    
+    
+    
+    
+    
     <section class="info">
       <div class="container">
 
@@ -589,13 +769,14 @@ foreach ($images as $image) {
               
             <?php endforeach ?>
           </div>
-          <ul class="slider-nav-list new-arrivals-slider-nav-list d-none d-md-block d-lg-block d-xl-block">
+          <ul class="slider-nav-list new-arrivals-slider-nav-list d-md-block d-lg-block d-xl-block">
             <li class="slider-nav prev"><img src="<?php echo base_url('assets') ?>/img/back.svg" class="icon" alt=""></span></li>
             <li class="slider-nav next"><img src="<?php echo base_url('assets') ?>/img/next.svg" class="icon" alt=""></span></li>
           </ul>
         </div>
       </div>
     </section>
+    
     
     <!--
 
@@ -617,7 +798,7 @@ foreach ($images as $image) {
         <section>
       <div class="container">
  
-          <img src="<?php echo base_url('assets') ?>/img/productnewimage.jpg" alt="" class="img-responsive" style="height:500px;">
+          <img src="<?php echo base_url('assets') ?>/img/productnewimage.jpg" alt="" class="img-responsive" width="100%">
   
     
       </div>

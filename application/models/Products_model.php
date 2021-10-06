@@ -178,7 +178,7 @@ class Products_model extends CI_Model
 
 	public function product_select_fields($category_type)
 	{
-		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.ProductID,p.SKU,p.CategoryID,p.product_type ,p.Gender,p.Sub_CategorylD,p.Productlive,p.Name,p.lmage,p.Stock,p.Price,p.MRP_Price,p.Net_weight,p.Gross_weight,p.Material_type, p.slug, p.is_make_an_order') 
+		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.ProductID,p.SKU,p.CategoryID,p.product_type ,p.Gender,p.Sub_CategorylD,p.Productlive,p.Name,p.lmage,p.Stock,p.Price,p.MRP_Price,p.Net_weight,p.chain_length,p.Gross_weight,p.Material_type, p.slug, p.is_make_an_order') 
 		->select('c.CategoryID,c.CategoryName,c.CategoryDesc,c.CategorySlug')
 		//->select('m.MaterialID, m.slug as material_slug, m.MaterialName') 
 		//->select('s.OptionID, s.OptionGroupID, s.OptionName') 
@@ -196,7 +196,7 @@ class Products_model extends CI_Model
 	
 		public function product_select_fields_backupfromvenkat($category_type)
 	{
-		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.ProductID,p.SKU,p.CategoryID,p.product_type ,p.Gender,p.Sub_CategorylD,p.Productlive,p.Name,p.lmage,p.Stock,p.Price,p.MRP_Price,p.Net_weight,p.Gross_weight,p.Material_type, p.slug, p.is_make_an_order') 
+		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.ProductID,p.SKU,p.CategoryID,p.product_type ,p.Gender,p.Sub_CategorylD,p.Productlive,p.Name,p.lmage,p.Stock,p.Price,p.MRP_Price,p.Net_weight,p.chain_length,p.Gross_weight,p.Material_type, p.slug, p.is_make_an_order') 
 		->select('c.CategoryID,c.CategoryName,c.CategoryDesc,c.CategorySlug')
 		->select('m.MaterialID, m.slug as material_slug, m.MaterialName') 
 		->select('s.OptionID, s.OptionGroupID, s.OptionName') 
@@ -255,7 +255,7 @@ public function gift_cards($category)
 	{
 
 		$products = array();
-		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.ProductID,p.SKU,p.CategoryID,p.product_type ,p.Gender,p.Sub_CategorylD,p.Productlive,p.Name,p.lmage,p.Stock,p.Price,p.MRP_Price,p.Net_weight,p.Gross_weight,p.Material_type, p.slug, p.is_make_an_order') 
+		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.ProductID,p.SKU,p.CategoryID,p.product_type ,p.Gender,p.Sub_CategorylD,p.Productlive,p.Name,p.lmage,p.Stock,p.Price,p.MRP_Price,p.Net_weight,p.chain_length,p.Gross_weight,p.Material_type, p.slug, p.is_make_an_order') 
 		->select('c.CategoryID,c.CategoryName,c.CategoryDesc,c.CategorySlug')		
         ->from('products p')       
 

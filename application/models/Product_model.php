@@ -25,11 +25,18 @@ class Product_model extends CI_Model
             $product->diamonds = $this->get_properities($product->ProductID, 'diamond');
             $product->pearls = $this->get_properities($product->ProductID, 'pearls');
             $product->gemstones = $this->get_properities($product->ProductID, 'gemstone');
+			$product->others = $this->get_properities($product->ProductID, 'other');
+			$product->beads = $this->get_properities($product->ProductID, 'beads');
+			$product->polkis = $this->get_properities($product->ProductID, 'polki');
             $product->diamond_shapes = $this->get_properities($product->ProductID, 'diamond_shape');
+			
+			
             $product->sizes = $this->get_distinct_properities('OptionSize', $product->ProductID, 'material');
             $product->metals_options = $this->get_combination_option_distinct_properities('Combination_OptionID', $product->ProductID, 'material');
             $product->pearls_options = $this->get_distinct_properities('OptionName', $product->ProductID, 'pearls');
             $product->gemstone_options = $this->get_distinct_properities('OptionName', $product->ProductID, 'gemstone');
+			
+
        }
 
        return $product;
@@ -52,8 +59,10 @@ class Product_model extends CI_Model
     public function get_properities($ProductID, $attribute)
     { 
          $this->db->from('product_option o')
+		 ->select('o.*,t.*,tt.OptionName as diamonshape')
         ->join('productoptions t', "o.OptionID = t.OptionID", 'left')
-        ->join('options_group g', 'g.OptionGroupID = t.OptionGroupID', 'left')
+        ->join('options_group g', 'g.OptionGroupID = t.OptionGroupID', 'left')	
+		->join('productoptions tt', "o.Diamond_Shape_Id = tt.OptionID", 'left')
         ->where('o.ProductID', $ProductID)
         ->where('o.attribute_type', $attribute);
 
@@ -81,15 +90,16 @@ class Product_model extends CI_Model
 
 	public function product_fields()
 	{
-		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.Gender,p.sub_product_type,p.ProductID ,p.CategoryID ,p.SKU,p.Net_weight,p.Gross_weight,p.slug,p.Width,p.Height,p.Length,p.Making_charges,p.Productlive,p.Length,p.Name,p.CartDesc,p.ShortDesc,p.LongDesc,p.Thumbnail,p.product_video_url,p.product_vimeo_url,p.Stock,p.MRP_Price,p.Price,p.SEOTitle,p.SEODesc,p.SEOKeywords,p.is_make_an_order')
+		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.Gender,p.sub_product_type,p.ProductID ,p.CategoryID ,p.SKU,p.Net_weight,p.Gross_weight,p.slug,p.Width,p.Height,p.Length,p.Making_charges,p.Productlive,p.chain_length,p.Name,p.CartDesc,p.ShortDesc,p.LongDesc,p.Thumbnail,p.product_video_url,p.product_vimeo_url,p.Stock,p.MRP_Price,p.Price,p.SEOTitle,p.SEODesc,p.SEOKeywords,p.is_make_an_order')
 		->from('products p');
 	}
 
 	public function product_with_category()
 	{
-		$this->db->select('p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.Gender,p.sub_product_type,p.ProductID ,p.CategoryID,p.product_type ,p.SKU,p.Net_weight,p.Gross_weight,p.slug,p.Width,p.Height,p.Length,p.Making_charges,p.Productlive,p.Length,p.Name,p.CartDesc,p.ShortDesc,p.LongDesc,p.Thumbnail,p.product_video_url,p.product_vimeo_url,p.Stock,p.MRP_Price,p.Price,p.SEOTitle,p.SEODesc,p.SEOKeywords,p.is_make_an_order,c.CategoryID,c.CategoryName,c.CategoryImage,c.CategoryDesc,c.CategorySlug, c.is_customizable')
+		$this->db->select('mt.MaterialName as mtname,p.screw_type,p.cad_availability,p.mould_availability,p.certificate_number,p.Polish_Details,p.Provision_for_opening,p.No_of_pieces,p.Gender,p.sub_product_type,p.ProductID ,p.CategoryID,p.product_type ,p.SKU,p.Net_weight,p.Gross_weight,p.slug,p.Width,p.Height,p.Length,p.Making_charges,p.Productlive,p.chain_length,p.Name,p.CartDesc,p.ShortDesc,p.LongDesc,p.Thumbnail,p.product_video_url,p.product_vimeo_url,p.Stock,p.MRP_Price,p.Price,p.SEOTitle,p.SEODesc,p.SEOKeywords,p.is_make_an_order,c.CategoryID,c.CategoryName,c.CategoryImage,c.CategoryDesc,c.CategorySlug, c.is_customizable')
         ->from('products p')
-        ->join('product_category c', 'c.CategoryID = p.CategoryID', 'left');
+        ->join('product_category c', 'c.CategoryID = p.CategoryID', 'left')
+		->join('material_type mt', 'mt.MaterialID = p.Material_type', 'left');
 	}
 
 	public function return_result($row=FALSE)

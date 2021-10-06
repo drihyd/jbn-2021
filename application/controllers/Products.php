@@ -39,29 +39,41 @@ class Products extends MY_Controller {
 
 
 if($cat_slug){
+
+
 	if($cat_slug=="gift-cards") {
 	$producatype="gift_cards";
 	$subproducatype="gift_cards";
 	$gendar="";
 	$catname=$cat_slug;
+
 	}
 	else{
-	$catslug=explode("-", $cat_slug);	
+	$catslug=explode("-", $cat_slug);		
 	$catname=array_slice($catslug,2);
 	$catname=implode("-",$catname);
 	$producatype=$catslug[0];
 	$gendar=$catslug[1];
 	$catname=$catname;
 	$subproducatype=$producatype;
+	
+
+
 	}
 }
 else{
+
+
 	$producatype="";
 	$subproducatype="";
 	$gendar="";
 	$catname="";
 }
+
 $category =  $this->core->get('product_category', array('CategorySlug'=>$catname));
+
+
+
         $data['category'] =$category;
         if (isset($_REQUEST['q'])) {
            $cat_slug = $_REQUEST['q'];
@@ -96,6 +108,8 @@ $category =  $this->core->get('product_category', array('CategorySlug'=>$catname
             }
 
        if($category || isset($_REQUEST['q'])) {
+		   
+		
         $data['page'] = 'products-list';
         $data['ajax_link'] = base_url('products/ajax_filtered_products');
         $data['page_title'] = "Products - ".ucwords($cat_slug);
